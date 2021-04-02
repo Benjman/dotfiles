@@ -1,0 +1,10 @@
+.ben
+.cache
+.clangd*
+.idea
+.project
+.ycm_extra_conf.py
+build/*/
+cmake-build-*
+compile_commands.json
+tags
