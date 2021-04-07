@@ -5,9 +5,6 @@ set nocompatible
 syntax enable
 filetype plugin on
 
-"""""""""""""""""
-"	FINDING FILES
-"
 set cmdheight=2
 set hidden
 set incsearch
