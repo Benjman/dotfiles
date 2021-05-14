@@ -1,0 +1,11 @@
+#/bin/bash
+pass_len=$1
+if [ -z "$pass_len" ]
+then
+	pass_len=30
+fi
+
+pass=$(openssl rand -base64 35 | cut -c1-$pass_len)
+echo $pass | xclip -selection clipboard
+echo "$pass"
+echo "Copied to your clipboard"

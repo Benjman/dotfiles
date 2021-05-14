@@ -13,6 +13,7 @@ nmap <C-Left> :tabp<cr>
 nmap <C-Right> :tabn<cr>
 
 nmap <leader>fc ?class<cr>y2w/{<cr>%$a // <esc>p
+nmap <leader><A-R> :echo "Hello"<cr>
 
 " go to ctag definition, or find references
 nmap <F3> :YcmCompleter GoToDefinition<cr>
