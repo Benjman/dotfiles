@@ -8,4 +8,6 @@ fi
 pass=$(openssl rand -base64 35 | cut -c1-$pass_len)
 echo $pass | xclip -selection clipboard
 echo "$pass"
-echo "Copied to your clipboard"
+echo "Random password copied to your clipboard. Password will be cleared from clipboard after 30 seconds."
+
+(sleep 30 ; echo "" | xclip -selection clipboard) &
