@@ -1,3 +1,4 @@
+alias lib="cd ~/.local/lib/ben"
 alias vim='nvim'
 
 alias bashrc='$EDITOR ~/.bashrc'
