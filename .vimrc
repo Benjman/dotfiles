@@ -2,8 +2,8 @@
 syntax enable
 filetype plugin on
 
-source ~/.vim/plugins.vim
 source ~/.vim/defaults.vim
+source ~/.vim/plugins.vim
 
 " map *.vert and *.frag to glsl filetype
 autocmd! BufNewFile,BufRead *.vert,*.frag set filetype=glsl
