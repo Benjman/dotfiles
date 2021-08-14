@@ -27,4 +27,4 @@ autocmd CursorMoved * exe printf('match PmenuThumb /\V\<%s\>/', escape(expand('<
 nmap ` :NERDTreeFind<cr>
 
 " open file finder with ctrl-h
-nmap <C-h> :find 
+nmap <C-h> :Telescope find_files<cr>

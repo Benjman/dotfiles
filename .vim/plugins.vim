@@ -13,7 +13,9 @@ Plug 'tikhomirov/vim-glsl'
 Plug 'gruvbox-community/gruvbox'
 
 " file navigation
-Plug 'scrooloose/nerdtree'
+" Plug 'scrooloose/nerdtree'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 
 Plug 'neoclide/coc.nvim'
 Plug 'drmikehenry/vim-headerguard'
@@ -23,7 +25,6 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-commentary'
 
 Plug 'ryanoasis/vim-devicons'
-Plug 'cj/vim-webdevicons'
 
 call plug#end()
 
