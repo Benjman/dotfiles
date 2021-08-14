@@ -2,7 +2,7 @@
 set -o vi
 
 export BROWSER=/usr/bin/firefox
-export EDITOR=/usr/bin/nvim
+export EDITOR=/usr/local/bin/nvim
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 export HISTCONTROL=ignoreboth
 export QT_AUTO_SCREEN_SCALE_FACTOR=0
