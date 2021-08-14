@@ -1,2 +1,2 @@
-#!/bin/sh
-man $@ | vim -R -c 'set ft=man' -
+#!/usr/bin/sh
+vim -c "Man $1 $2" -c 'silent only'
