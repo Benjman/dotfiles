@@ -1,3 +1,4 @@
+set autoread
 set cmdheight=2
 set encoding=utf-8
 set hidden
