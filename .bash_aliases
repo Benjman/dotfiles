@@ -8,7 +8,6 @@ alias l='ls'
 alias lib="cd ~/.local/lib/ben"
 alias ll='ls -lah'
 alias make='make -j 32'
-alias man='sh ~/.local/lib/ben/viman.sh'
 alias mpv='mpv --sid=no'
 alias notes='pwd=$PWD; [[ ! -d ~/Documents/notes ]] && mkdir ~/Documents/notes; cd ~/Documents/notes; $EDITOR . && cd $pwd'
 alias nvim='[ ! -e /usr/local/bin/nvim ] && >&2 echo -e "\033[0;31m/usr/local/bin/nvim not found. Install with \"sh ~/.local/lib/ben/neovim-install.sh\"" || /usr/local/bin/nvim'
