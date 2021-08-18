@@ -19,7 +19,6 @@ nnoremap <silent> Q <nop>
 vnoremap J :move '>+1<CR>gv=gv
 vnoremap K :move '<-2<CR>gv=gv
 
-" quick :W == :w
 command! W w
 
 call plug#begin('~/.vim/plugged')
@@ -28,23 +27,20 @@ call plug#begin('~/.vim/plugged')
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
 Plug 'preservim/nerdtree'
-Plug 'vim-utils/vim-man'
+Plug 'ryanoasis/vim-devicons'
 Plug 'vim-airline/vim-airline'
-Plug 'tikhomirov/vim-glsl'
 Plug 'gruvbox-community/gruvbox'
+Plug 'svenstaro/glsl-language-server', { 'do': 'cmake -Bbuild && make --directory build' }
 
 " file navigation
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
-Plug 'neoclide/coc.nvim'
-Plug 'drmikehenry/vim-headerguard'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " tpope is god
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-commentary'
-
-Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 
