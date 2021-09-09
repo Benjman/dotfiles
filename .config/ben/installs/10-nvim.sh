@@ -10,12 +10,27 @@ Z_PWD=$PWD
 mkdir -p $DIR
 git clone --branch $BRANCH $REPO $DIR
 
-sudo apt-get install ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl
+sudo apt install -y
+	ninja-build \
+	gettext \
+	libtool \
+	libtool-bin \
+	python \
+	python-pip \
+	python3 \
+	python3-pip \
+	autoconf \
+	automake \
+	cmake \
+	g++ \
+	pkg-config \
+	unzip \
+	curl
 
 cd $DIR
 make CMAKE_BUILD_TYPE=Release
 sudo make install
 
-[ -e python3 ] && python3 -m pip install pynvim
+python3 -m pip install pynvim
 
 nvim --version

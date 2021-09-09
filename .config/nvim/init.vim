@@ -8,6 +8,7 @@ set wildmenu
 " ignore files
 set wildignore+=*.pyc
 set wildignore+=*_build/*
+" set wildignore+=*cmake-build-*
 set wildignore+=**/coverage/*
 set wildignore+=**/node_modules/*
 set wildignore+=**/android/*
@@ -23,20 +24,18 @@ command! W w
 
 call plug#begin('~/.vim/plugged')
 
-" Neovim Tree shitter
+Plug 'gruvbox-community/gruvbox'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'preservim/nerdtree'
+Plug 'vim-airline/vim-airline'
+Plug 'ryanoasis/vim-devicons'
+
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
-Plug 'preservim/nerdtree'
-Plug 'ryanoasis/vim-devicons'
-Plug 'vim-airline/vim-airline'
-Plug 'gruvbox-community/gruvbox'
-Plug 'svenstaro/glsl-language-server', { 'do': 'cmake -Bbuild && make --directory build' }
 
 " file navigation
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " tpope is god
 Plug 'tpope/vim-sensible'
