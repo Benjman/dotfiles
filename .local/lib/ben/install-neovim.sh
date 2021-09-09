@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set e
+set -e
 
 DIR=$HOME/.local/lib/neovim
 BRANCH=release-0.5
