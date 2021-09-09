@@ -1,5 +1,20 @@
 {
     "languageserver": {
+		"glsl": {
+			"command": "glslls",
+			"socketserver": {
+				"host": "127.0.0.1",
+				"port": 61313
+			},
+			"filetypes": [
+				"comp",
+				"frag",
+				"geom",
+				"tesc",
+				"tese",
+				"vert"
+			]
+		},
         "ccls": {
             "command": "ccls",
             "filetypes": [
