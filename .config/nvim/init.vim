@@ -8,6 +8,7 @@ set wildmenu
 " ignore files
 set wildignore+=*.pyc
 set wildignore+=*_build/*
+" set wildignore+=*cmake-build-*
 set wildignore+=**/coverage/*
 set wildignore+=**/node_modules/*
 set wildignore+=**/android/*
@@ -19,32 +20,25 @@ nnoremap <silent> Q <nop>
 vnoremap J :move '>+1<CR>gv=gv
 vnoremap K :move '<-2<CR>gv=gv
 
-" quick :W == :w
 command! W w
 
 call plug#begin('~/.vim/plugged')
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Neovim Tree shitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
 Plug 'preservim/nerdtree'
-Plug 'vim-utils/vim-man'
 Plug 'vim-airline/vim-airline'
-Plug 'tikhomirov/vim-glsl'
 Plug 'gruvbox-community/gruvbox'
 
 " file navigation
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
-Plug 'neoclide/coc.nvim'
-Plug 'drmikehenry/vim-headerguard'
-
 " tpope is god
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-commentary'
-
-Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 
