@@ -6,16 +6,12 @@
 
 # trim trailing slash, if one exists
 path=${1%/}
-echo $path
-
 # get value of last slash
 name="${path##*/}"
-echo $name
-
-echo ${path#*/}
-
+# date formatted string
 date_str=$(date +"%Y%m%d%H%M%S")
-echo $date_str
+
+dest=~/.backups/$name-$date_str-backup
 
 if [ -d $1 ]
 then
@@ -23,3 +19,5 @@ then
 else
 	cp $path ~/.backups/$name-$date_str-backup
 fi
+
+echo "Backed up $path to $dest"
