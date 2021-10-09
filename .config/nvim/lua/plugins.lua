@@ -46,7 +46,7 @@ function()
     -- For nice highlighting
     use 'nvim-treesitter/nvim-treesitter'
     -- For snippets
-    --use 'hrsh7th/vim-vsnip'
+    use 'hrsh7th/vim-vsnip'
     -- Provide git signs
     use { 'lewis6991/gitsigns.nvim', requires = 'nvim-lua/plenary.nvim' }
     -- Smooth scrolling
