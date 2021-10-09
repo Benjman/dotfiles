@@ -51,6 +51,8 @@ function()
     use { 'lewis6991/gitsigns.nvim', requires = 'nvim-lua/plenary.nvim' }
     -- Smooth scrolling
     use 'karb94/neoscroll.nvim'
+	-- GLSL lsp
+	use 'svenstaro/glsl-language-server'
 end
 )
 
