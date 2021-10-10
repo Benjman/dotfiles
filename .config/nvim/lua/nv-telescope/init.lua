@@ -24,10 +24,10 @@ require('telescope').setup{
 				mirror = false,
 			},
 		},
-		file_sorter =  require('telescope.sorters').get_fuzzy_file,
+		file_sorter =  require('telescope.sorters').get_fzy_sorter,
 		generic_sorter =  require('telescope.sorters').get_generic_fuzzy_sorter,
-		file_ignore_patterns = { 'build' },
-		path_display = absolute,
+		file_ignore_patterns = { 'build', 'lib' },
+		path_display = shorten,
 		winblend = 0,
 		border = {},
 		borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
@@ -43,11 +43,21 @@ require('telescope').setup{
 	}
 }
 
+require('telescope').setup {
+    extensions = {
+        fzy_native = {
+            override_generic_sorter = false,
+            override_file_sorter = true,
+        }
+    }
+}
+require('telescope').load_extension('fzy_native')
+
 local opt = {silent = true, noremap = true}
 local map = vim.api.nvim_set_keymap
 
-map('n', '<leader>ff', '<cmd>lua require(\'telescope.builtin\').find_files()<cr>', opt)
-map('n', '<leader>fg', '<cmd>lua require(\'telescope.builtin\').live_grep()<cr>', opt)
-map('n', '<leader>fb', '<cmd>lua require(\'telescope.builtin\').buffers()<cr>', opt)
-map('n', '<leader>fh', '<cmd>lua require(\'telescope.builtin\').help_tags()<cr>', opt)
+map('n', 'ff', '<cmd>lua require(\'telescope.builtin\').find_files()<cr>', opt)
+map('n', 'fg', '<cmd>lua require(\'telescope.builtin\').live_grep()<cr>', opt)
+map('n', 'fb', '<cmd>lua require(\'telescope.builtin\').buffers()<cr>', opt)
+map('n', 'fh', '<cmd>lua require(\'telescope.builtin\').help_tags()<cr>', opt)
 

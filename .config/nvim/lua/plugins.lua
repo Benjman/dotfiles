@@ -18,23 +18,19 @@ function()
     use 'norcalli/nvim-colorizer.lua'
     -- File explorer
     use { 'kyazdani42/nvim-tree.lua', requires = 'kyazdani42/nvim-web-devicons' }
-    use {
-	'kyazdani42/nvim-tree.lua',
-	requires = 'kyazdani42/nvim-web-devicons',
-	config = function() require'nvim-tree'.setup {} end
-    }
     -- For indent line
     use 'lukas-reineke/indent-blankline.nvim'
-    -- Commenter
-    use 'preservim/nerdcommenter'
     -- Float terminal
     use 'voldikss/vim-floaterm'
     -- Buffer line
-    use { 'akinsho/nvim-bufferline.lua',
-        requires = 'kyazdani42/nvim-web-devicons' }
+    use { 'akinsho/nvim-bufferline.lua', requires = 'kyazdani42/nvim-web-devicons' }
     -- Make finding stuff easier
-    use { 'nvim-telescope/telescope.nvim', requires = {
-        {'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'} }
+    use { 'nvim-telescope/telescope.nvim',
+        requires = {
+            { 'nvim-lua/popup.nvim' },
+            { 'nvim-lua/plenary.nvim' },
+            { 'nvim-telescope/telescope-fzy-native.nvim' }
+        }
     }
     -- Neovim LSP
     use 'neovim/nvim-lspconfig'
@@ -51,8 +47,8 @@ function()
     use { 'lewis6991/gitsigns.nvim', requires = 'nvim-lua/plenary.nvim' }
     -- Smooth scrolling
     use 'karb94/neoscroll.nvim'
-	-- GLSL lsp
-	use 'svenstaro/glsl-language-server'
+	-- GLSL syntax highlighting
+	use 'tikhomirov/vim-glsl'
 end
 )
 
