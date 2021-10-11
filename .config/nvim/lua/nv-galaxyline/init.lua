@@ -133,7 +133,7 @@ gls.left[6] = {
         end,
         condition = in_git_repo,
         highlight = {colors.fg,colors.bg},
-  }
+    }
 }
 gls.left[7] = {
     DiffAdd = {

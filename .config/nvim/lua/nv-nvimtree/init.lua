@@ -20,14 +20,14 @@ vim.g.nvim_tree_respect_buf_cwd = 1 --0 by default, will change cwd of nvim-tree
 vim.g.nvim_tree_create_in_closed_folder = 1 --1 by default, When creating files, sets the path of a file when cursor is on a closed folder to the parent folder when 0, and inside the folder when 1.
 vim.g.nvim_tree_refresh_wait = 500 --1000 by default, control how often the tree can be refreshed, 1000 means the tree can be refresh once per 1000ms.
 vim.g.nvim_tree_window_picker_exclude = {
-        filetype = {
-            'notify',
-            'packer',
-            'qf'
-        },
-        buftype = {
-            'terminal'
-        }
+    filetype = {
+        'notify',
+        'packer',
+        'qf'
+    },
+    buftype = {
+        'terminal'
+    }
 }
 -- Dictionary of buffer option names mapped to a list of option values that
 -- indicates to the window picker that the buffer's window should not be
@@ -57,7 +57,7 @@ vim.g.nvim_tree_icons = {
         untracked = '★',
         deleted = '',
         ignored = '◌'
-        },
+    },
     folder = {
         arrow_open = '',
         arrow_closed = '',
@@ -110,7 +110,7 @@ local list = {
     { key = 'd',                            cb = tree_cb('remove') },
     { key = 'r',                            cb = tree_cb('rename') },
     { key = '<C-r>',                        cb = tree_cb('full_rename') },
---    { key = 'x',                            cb = tree_cb('cut') },
+    --    { key = 'x',                            cb = tree_cb('cut') },
     { key = 'c',                            cb = tree_cb('copy') },
     { key = 'p',                            cb = tree_cb('paste') },
     { key = 'y',                            cb = tree_cb('copy_name') },

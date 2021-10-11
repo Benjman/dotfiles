@@ -4,7 +4,7 @@ require('bufferline').setup {
     options = {
         right_mouse_command = 'vert sbuffer %d',
         show_close_icon = false,
-	show_buffer_close_icons = false,
+        show_buffer_close_icons = false,
         separator_style = 'thin',
         diagnostics = 'nvim_lsp',
         diagnostics_indicator = diagnostics_indicator,
