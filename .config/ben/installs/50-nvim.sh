@@ -11,21 +11,24 @@ mkdir -p $DIR
 git clone --branch $BRANCH $REPO $DIR
 
 sudo apt install -y
-	ninja-build \
+	autoconf \
+	automake \
+	cmake \
+	curl \
+	g++ \
 	gettext \
 	libtool \
 	libtool-bin \
+	ninja-build \
+	pkg-config \
 	python \
 	python-pip \
 	python3 \
 	python3-pip \
-	autoconf \
-	automake \
-	cmake \
-	g++ \
-	pkg-config \
 	unzip \
-	curl
+    clangd \
+    llvm \
+    ripgrep
 
 cd $DIR
 make CMAKE_BUILD_TYPE=Release
