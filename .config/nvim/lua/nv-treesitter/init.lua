@@ -1,21 +1,19 @@
-local ts_config = require('nvim-treesitter.configs')
-
-ts_config.setup {
+require('nvim-treesitter.configs').setup {
     ensure_installed = {
-        'javascript',
-        'html',
-        'css',
         'bash',
-        'lua',
-        'json',
-        'python',
-        'cpp',
         'c',
-        'java'
+        'cpp',
+        'css',
+        'html',
+        'java',
+        'javascript',
+        'json',
+        'lua',
+        'python',
     },
     highlight = {
         enable = true,
-        use_languagetree = true
+        use_languagetree = true,
     }
 }
 

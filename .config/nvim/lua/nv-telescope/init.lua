@@ -1,3 +1,5 @@
+local T = require('telescope')
+
 require('telescope').setup{
 	defaults = {
 		vimgrep_arguments = {
@@ -40,10 +42,7 @@ require('telescope').setup{
 
 		-- Developer configurations: Not meant for general override
 		buffer_previewer_maker = require('telescope.previewers').buffer_previewer_maker
-	}
-}
-
-require('telescope').setup {
+	},
     extensions = {
         fzy_native = {
             override_generic_sorter = false,
@@ -51,6 +50,7 @@ require('telescope').setup {
         }
     }
 }
+
 require('telescope').load_extension('fzy_native')
 
 local opt = {silent = true, noremap = true}

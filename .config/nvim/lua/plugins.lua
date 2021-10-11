@@ -6,10 +6,8 @@ if fn.empty(fn.glob(install_path)) > 0 then
     vim.cmd 'packadd packer.nvim'
 end
 
-local use = require('packer').use
-
 return require('packer').startup(
-function()
+function(use)
     -- Theme
     use 'folke/tokyonight.nvim'
     -- Status line
@@ -34,6 +32,8 @@ function()
     }
     -- Neovim LSP
     use 'neovim/nvim-lspconfig'
+    -- Java LSP
+    --use 'mfussenegger/nvim-jdtls'
     -- Tab/Auto completion
     use 'hrsh7th/nvim-compe'
     -- Auto pairs '', "", [], {}, (), ``
@@ -45,6 +45,8 @@ function()
     use 'hrsh7th/vim-vsnip'
     -- Provide git signs
     use { 'lewis6991/gitsigns.nvim', requires = 'nvim-lua/plenary.nvim' }
+    -- Debugging
+    --use { 'puremourning/vimspector' } -- TODO
     -- Smooth scrolling
     use 'karb94/neoscroll.nvim'
 	-- GLSL syntax highlighting

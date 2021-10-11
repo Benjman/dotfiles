@@ -18,6 +18,8 @@ require 'nv-gitsigns'
 require 'nv-indentline'
 -- Neovim LSP
 require 'nv-lspconfig'
+-- java LSP
+require 'nv-nvim-jdtls'
 -- Tab/Auto completion
 require 'nv-compe'
 -- Smooth scrolling
