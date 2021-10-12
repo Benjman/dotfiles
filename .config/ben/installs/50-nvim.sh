@@ -11,22 +11,21 @@ mkdir -p $DIR
 git clone --branch $BRANCH $REPO $DIR
 
 sudo apt install -y \
-	autoconf \
-	automake \
-	cmake \
+    autoconf \
+    automake \
+    cmake \
     make \
-	curl \
-	g++ \
-	gettext \
-	libtool \
-	libtool-bin \
-	ninja-build \
-	pkg-config \
-	python \
-	python-pip \
-	python3 \
-	python3-pip \
-	unzip \
+    curl \
+    g++ \
+    gettext \
+    libtool \
+    libtool-bin \
+    ninja-build \
+    pkg-config \
+    python \
+    python3 \
+    python3-pip \
+    unzip \
     clangd \
     llvm \
     ripgrep
