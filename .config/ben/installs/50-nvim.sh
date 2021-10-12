@@ -10,10 +10,11 @@ Z_PWD=$PWD
 mkdir -p $DIR
 git clone --branch $BRANCH $REPO $DIR
 
-sudo apt install -y
+sudo apt install -y \
 	autoconf \
 	automake \
 	cmake \
+    make \
 	curl \
 	g++ \
 	gettext \
