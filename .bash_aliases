@@ -1,13 +1,17 @@
 alias aliases='$EDITOR ~/.bash_aliases && source ~/.bash_aliases'
 alias bashrc='$EDITOR ~/.bashrc && source ~/.bashrc'
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias config='/usr/bin/git --git-dir=$HOME/.config/dotfiles/ --work-tree=$HOME'
+alias cp="cp -i"                          # confirm before overwriting something
+alias df='df -h'                          # human-readable sizes
 alias doc='cd ~/Documents'
 alias docs='doc'
 alias down='cd ~/Downloads'
+alias free='free -m'                      # show sizes in MB
 alias l='ls'
 alias lib="cd ~/.local/lib/ben"
 alias ll='ls -lah'
 alias make='make -j 32'
+alias more=less
 alias mpv='mpv --sid=no'
 alias notes='pwd=$PWD; [[ ! -d ~/Documents/notes ]] && mkdir ~/Documents/notes; cd ~/Documents/notes; $EDITOR . && cd $pwd'
 alias nvim='[ ! -e /usr/local/bin/nvim ] && >&2 echo -e "\033[0;31m/usr/local/bin/nvim not found. Install with \"sh ~/.local/lib/ben/neovim-install.sh\"" || /usr/local/bin/nvim'
@@ -24,3 +28,4 @@ alias vimconfig='nvimconfig'
 alias vimrc='nvimrc'
 alias youtube-dl-a='youtube-dl -f bestaudio/best'
 alias youtube-dl='youtube-dl --force-ipv4'
+
