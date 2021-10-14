@@ -2,35 +2,18 @@ require 'settings'
 require 'keybindings'
 require 'plugins'
 
--- Auto pairs '', "", [], {}, (), ``
-require 'nv-autopairs'
--- Buffer line
+require 'nv-autopairs'           -- Auto pairs '', "", [], {}, (), ``
 require 'nv-bufferline'
--- For hex color
 require 'nv-colorizer'
----- Float terminal
-require 'nv-floaterm'
--- Status line
-require 'nv-galaxyline'
--- Provide git signs
+require 'nv-compe'               -- Tab/Auto completion
+require 'nv-floaterm'            -- Float terminal
+require 'nv-galaxyline'          -- Status line
 require 'nv-gitsigns'
--- For indent line
 require 'nv-indentline'
--- Neovim LSP
-require 'nv-lspconfig'
--- java LSP
-require 'nv-nvim-jdtls'
--- Tab/Auto completion
-require 'nv-compe'
--- Smooth scrolling
-require 'nv-neoscroll'
--- File explorer
-require 'nv-nvimtree'
--- Make finding stuff easier
-require 'nv-telescope'
--- Themes
+require 'nv-lsp'
+require 'nv-neoscroll'           -- Smooth scrolling
+require 'nv-nvimtree'            -- File explorer
+require 'nv-telescope'           -- Fuzzy finders
 require 'nv-theme'
--- For nice highlighing
-require 'nv-treesitter'
--- For snippets
-require 'nv-vsnip'
+require 'nv-treesitter'          -- Syntax highlighting
+require 'nv-vsnip'               -- Snippets

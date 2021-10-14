@@ -7,43 +7,37 @@ end
 
 return require('packer').startup(
 function(use)
+    -- Buffer line
+    use { 'akinsho/nvim-bufferline.lua', requires = 'kyazdani42/nvim-web-devicons' }
     -- Theme
     use 'folke/tokyonight.nvim'
     -- Status line
     use { 'glepnir/galaxyline.nvim', requires = 'kyazdani42/nvim-web-devicons' }
-    -- hex color
-    use 'norcalli/nvim-colorizer.lua'
-    -- File explorer
-    use { 'kyazdani42/nvim-tree.lua', requires = 'kyazdani42/nvim-web-devicons' }
-    -- Indent line
-    use 'lukas-reineke/indent-blankline.nvim'
-    -- Float terminal
-    use 'voldikss/vim-floaterm'
-    -- Buffer line
-    use { 'akinsho/nvim-bufferline.lua', requires = 'kyazdani42/nvim-web-devicons' }
-    -- Make finding stuff easier
-    use { 'nvim-telescope/telescope.nvim', requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' }, { 'nvim-telescope/telescope-fzy-native.nvim' } } }
-    -- Neovim LSP
-    use 'neovim/nvim-lspconfig'
-    -- Java LSP
-    --use 'mfussenegger/nvim-jdtls'
     -- Tab/Auto completion
     use 'hrsh7th/nvim-compe'
-    -- Auto pairs '', "", [], {}, (), ``
-    use 'jiangmiao/auto-pairs'
-    use 'windwp/nvim-autopairs'
-    -- Nice highlighting
-    use 'nvim-treesitter/nvim-treesitter'
     -- Snippets
     use 'hrsh7th/vim-vsnip'
-    -- Provide git signs
-    use { 'lewis6991/gitsigns.nvim', requires = 'nvim-lua/plenary.nvim' }
-    -- Debugging
-    --use { 'puremourning/vimspector' } -- TODO
     -- Smooth scrolling
     use 'karb94/neoscroll.nvim'
+    -- File explorer
+    use { 'kyazdani42/nvim-tree.lua', requires = 'kyazdani42/nvim-web-devicons' }
+    -- Provide git signs
+    use { 'lewis6991/gitsigns.nvim', requires = 'nvim-lua/plenary.nvim' }
+    -- Indent line
+    use 'lukas-reineke/indent-blankline.nvim'
+    -- Java LSP
+    use 'mfussenegger/nvim-jdtls'
+    -- hex color
+    use 'norcalli/nvim-colorizer.lua'
+    -- Make finding stuff easier
+    use { 'nvim-telescope/telescope.nvim', requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' }, { 'nvim-telescope/telescope-fzy-native.nvim' } } }
+    -- Nice highlighting
+    use 'nvim-treesitter/nvim-treesitter'
     -- GLSL syntax highlighting
     use 'tikhomirov/vim-glsl'
+    -- Float terminal
+    use 'voldikss/vim-floaterm'
+    -- Auto pairs '', "", [], {}, (), ``
+    use { 'windwp/nvim-autopairs', requires = 'jiangmiao/auto-pairs' }
 end
 )
-
