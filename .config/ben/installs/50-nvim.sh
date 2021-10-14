@@ -1,15 +1,6 @@
 #!/usr/bin/env bash
 set -e
 
-DIR=$HOME/.local/lib/neovim
-BRANCH=release-0.5
-REPO=https://github.com/neovim/neovim.git
-Z_PWD=$PWD
-
-[ -d $DIR ] && echo "$DIR already exists. Aborting installation." && exit
-mkdir -p $DIR
-git clone --branch $BRANCH $REPO $DIR
-
 sudo apt install -y \
     autoconf \
     automake \
@@ -29,6 +20,15 @@ sudo apt install -y \
     clangd \
     llvm \
     ripgrep
+
+DIR=$HOME/.local/lib/neovim
+BRANCH=release-0.5
+REPO=https://github.com/neovim/neovim.git
+Z_PWD=$PWD
+
+[ -d $DIR ] && echo "$DIR already exists. Aborting installation." && exit
+mkdir -p $DIR
+git clone --branch $BRANCH $REPO $DIR
 
 cd $DIR
 make CMAKE_BUILD_TYPE=Release
