@@ -8,3 +8,5 @@ export HISTCONTROL=ignoreboth
 export QT_AUTO_SCREEN_SCALE_FACTOR=0
 export QT_QPA_PLATFORMTHEME="stilt"
 export VISUAL=$EDITOR
+
+export PATH=$HOME/.local/bin:$PATH
