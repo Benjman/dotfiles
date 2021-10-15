@@ -25,6 +25,8 @@ function(use)
     use { 'lewis6991/gitsigns.nvim', requires = 'nvim-lua/plenary.nvim' }
     -- Indent line
     use 'lukas-reineke/indent-blankline.nvim'
+    -- Generic LSP
+    use 'neovim/nvim-lspconfig'
     -- Java LSP
     use 'mfussenegger/nvim-jdtls'
     -- hex color

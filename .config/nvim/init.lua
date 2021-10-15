@@ -1,6 +1,6 @@
-require 'settings'
 require 'keybindings'
 require 'plugins'
+require 'settings'
 
 require 'nv-autopairs'           -- Auto pairs '', "", [], {}, (), ``
 require 'nv-bufferline'
