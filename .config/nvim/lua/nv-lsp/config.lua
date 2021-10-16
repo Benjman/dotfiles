@@ -117,9 +117,26 @@ function M.add_client(cmd, opts)
     add_client_by_cfg(config, opts and opts.root or {'.git'})
 end
 
+function M.start_clangd()
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    capabilities.textDocument.completion.completionItem.snippetSupport = true
+    capabilities.textDocument.completion.completionItem.preselectSupport = true
+
+    require("lspconfig").clangd.setup {
+        on_attach = on_attach,
+        root_dir = vim.loop.cwd,
+        capabilities = capabilities,
+    }
+
+    vim.fn.sign_define("LspDiagnosticsSignError", {text = ""})
+    vim.fn.sign_define("LspDiagnosticsSignWarning", {text = ""})
+    vim.fn.sign_define("LspDiagnosticsSignInformation", {text = ""})
+    vim.fn.sign_define("LspDiagnosticsSignHint", {text = ""})
+    vim.g.completion_enable_snippet = 'snippets.nvim'
+end
+
 function M.start_jdt()
-    local root_markers = {'gradlew', '.git', 'mvnw', 'pom.xml'}
-    local root_dir = setup.find_root(root_markers)
+    local root_dir = setup.find_root({'gradlew', '.git', 'mvnw', 'pom.xml'})
     local home = os.getenv('HOME')
     local workspace_folder = home .. "/.local/share/eclipse/" .. vim.fn.fnamemodify(root_dir, ":p:h:t")
     local config = mk_config()
@@ -183,17 +200,6 @@ function M.start_jdt()
         extendedClientCapabilities = extendedClientCapabilities;
     }
     jdtls.start_or_attach(config)
-end
-
-function M.start_go_ls()
-    local path = os.getenv("GOPATH") .. "/bin/go-langserver"
-    M.add_client({path, '-gocodecompletion'}, {name = 'gols'})
-end
-
-function M.test()
-    vim.cmd[[
-    highlight Normal ctermfg=grey ctermbg=darkblue
-    ]]
 end
 
 return M
