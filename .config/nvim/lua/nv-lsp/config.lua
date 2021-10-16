@@ -100,7 +100,7 @@ local function mk_config()
             allow_incremental_sync = true,
         };
         handlers = {
-            ["textDocument/publishDiagnostics"] = lsp_diag.publishDiagnostics,
+--            ["textDocument/publishDiagnostics"] = lsp_diag.publishDiagnostics,
         };
         capabilities = capabilities;
         on_init = on_init;
@@ -138,13 +138,14 @@ end
 function M.start_jdt()
     local root_dir = setup.find_root({'gradlew', '.git', 'mvnw', 'pom.xml'})
     local home = os.getenv('HOME')
-    local workspace_folder = home .. "/.local/share/eclipse/" .. vim.fn.fnamemodify(root_dir, ":p:h:t")
+    local workspace_folder = home .. "/.cache/jdt/eclipse/" .. vim.fn.fnamemodify(root_dir, ":p:h:t")
     local config = mk_config()
+
     config.flags.server_side_fuzzy_completion = true
     config.settings = {
         java = {
             signatureHelp = { enabled = true };
-            --contentProvider = { preferred = 'fernflower' };
+            contentProvider = { preferred = 'fernflower' };
             completion = {
                 favoriteStaticMembers = {
                     "org.hamcrest.MatcherAssert.assertThat",
@@ -200,6 +201,31 @@ function M.start_jdt()
         extendedClientCapabilities = extendedClientCapabilities;
     }
     jdtls.start_or_attach(config)
+end
+
+function M.start_clangd()
+    vim.g.completion_enable_snippet = 'snippets.nvim'
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+    local lspconf = require("lspconfig")
+    local servers = { "clangd" }
+
+    -- Load language servers
+    for _, lang in ipairs(servers) do
+        lspconf[lang].setup {
+            on_attach = on_attach,
+            root_dir = vim.loop.cwd,
+            capabilities = capabilities
+        }
+    end
+
+
+    vim.fn.sign_define("LspDiagnosticsSignError", {text = ""})
+    vim.fn.sign_define("LspDiagnosticsSignWarning", {text = ""})
+    vim.fn.sign_define("LspDiagnosticsSignInformation", {text = ""})
+    vim.fn.sign_define("LspDiagnosticsSignHint", {text = ""})
+
 end
 
 return M
