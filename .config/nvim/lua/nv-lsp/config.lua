@@ -1,8 +1,9 @@
 local M = {}
 local jdtls = require('jdtls')
-local setup = require('jdtls.setup')
 local lsp_diag = require('nv-lsp.diagnostics')
 local lsp_ext = require('nv-lsp.ext')
+local setup = require('jdtls.setup')
+local util = require('nv-lsp.util')
 local lsps = {}
 
 local function add_client_by_cfg(config, root_markers)
@@ -122,9 +123,11 @@ function M.start_clangd()
     capabilities.textDocument.completion.completionItem.snippetSupport = true
     capabilities.textDocument.completion.completionItem.preselectSupport = true
 
+    local root_dir = util.find_root({'compile_commands.json'})
+
     require("lspconfig").clangd.setup {
         on_attach = on_attach,
-        root_dir = vim.loop.cwd,
+        root_dir = root_dir,
         capabilities = capabilities,
     }
 
