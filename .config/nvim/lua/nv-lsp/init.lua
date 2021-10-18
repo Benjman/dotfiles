@@ -5,4 +5,3 @@ vim.cmd([[
         autocmd FileType c,cpp,objc,objcpp,objective-c,objective-cpp,cuda,arduino,h,hpp :lua require('nv-lsp.clangd').start()
     augroup END
 ]])
-
