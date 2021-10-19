@@ -3,8 +3,41 @@ local config = require('nv-lsp.config')
 local jdtls = require('jdtls')
 local lsp_diag = require('nv-lsp.diagnostics')
 local lsp_ext = require('nv-lsp.ext')
-local setup = require('jdtls.setup')
 local util = require('nv-lsp.util')
+
+local key_mappings = {
+    {"code_action", "n", "<a-CR>", "<Cmd>lua require('jdtls').code_action()<CR>"},
+    {"code_action", "n", "<leader>r", "<Cmd>lua require('jdtls'.code_action(false, 'refactor'))<CR>"},
+    {"code_action", "v", "<a-CR>", "<Esc><Cmd>lua require('jdtls').code_action(true)<CR>"},
+    {"code_action", "v", "<leader>r", "<Esc><Cmd>lua require('jdtls').code_action(true, 'refactor')<CR>"},
+
+    {"document_formatting", "n", "gq", "<Cmd>lua vim.lsp.buf.formatting()<CR>"},
+    {"document_range_formatting", "v", "gq", "<Esc><Cmd>lua vim.lsp.buf.range_formatting()<CR>"},
+    {"find_references", "n", "gr", "<Cmd>lua vim.lsp.buf.references()<CR>"},
+    {"hover", "n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>"},
+    {"implementation", "n", "gD",  "<Cmd>lua vim.lsp.buf.implementation()<CR>"},
+    {"signature_help", "i", "<c-space>",  "<Cmd>lua vim.lsp.buf.signature_help()<CR>"},
+    {"workspace_symbol", "n", "gW", "<Cmd>lua vim.lsp.buf.workspace_symbol()<CR>"}
+    --map('n', '<f3>', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
+    --map('n', '<A-o>', '<Cmd>lua require\'jdtls\'.organize_imports()<CR>', opts)
+    --map('n', '<leader>df', '<Cmd>lua require\'jdtls\'.test_class()<CR>', opts)
+    --map('n', '<leader>dn', '<Cmd>lua require\'jdtls\'.test_nearest_method()<CR>', opts)
+    --map('v', 'crv', '<Esc><Cmd>lua require(\'jdtls\').extract_variable(true)<CR>', opts)
+    --map('n', 'crv', '<Cmd>lua require(\'jdtls\').extract_variable()<CR>', opts)
+    --map('v', 'crm', '<Esc><Cmd>lua require(\'jdtls\').extract_method(true)<CR>', opts)
+    --vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>", "<Cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", opts)
+    --vim.api.nvim_buf_set_keymap(bufnr, "n", "crr", "<Cmd>lua vim.lsp.buf.rename(vim.fn.input('New Name: '))<CR>", opts)
+    --vim.api.nvim_buf_set_keymap(bufnr, "n", "]w", "<Cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
+    --vim.api.nvim_buf_set_keymap(bufnr, "n", "[w", "<Cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
+    --vim.api.nvim_buf_set_keymap(bufnr, "i", "<c-n>", "<Cmd>lua require('lsp-ext').trigger_completion()<CR>", opts)
+}
+
+local function on_init(client)
+    lsp_ext.setup()
+    if client.config.settings then
+        client.notify('workspace/didChangeConfiguration', { settings = client.config.settings })
+    end
+end
 
 local function mk_config()
     local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -19,25 +52,39 @@ local function mk_config()
         };
         capabilities = capabilities;
         on_init = on_init;
-        on_attach = on_attach;
     }
 end
 
 local function jdtls_on_attach(client, bufnr)
-    on_attach(client, bufnr)
+    lsp_ext.attach(client, bufnr)
+    vim.api.nvim_buf_set_var(bufnr, "lsp_client_id", client.id)
+    vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+    vim.api.nvim_buf_set_option(bufnr, "bufhidden", "hide")
+    vim.api.nvim_command("setlocal signcolumn=yes")
+
+    if client.resolved_capabilities.goto_definition then
+        vim.api.nvim_buf_set_option(bufnr, 'tagfunc', "v:lua.lsp_ext.tagfunc")
+    end
     local opts = { silent = true; }
-    jdtls.setup_dap()
+    for _, mappings in pairs(key_mappings) do
+        local capability, mode, lhs, rhs = unpack(mappings)
+        if client.resolved_capabilities[capability] then
+            vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts)
+        end
+    end
+
+    --jdtls.setup_dap() -- TODO setup dap https://github.com/mfussenegger/nvim-jdtls#debugger-via-nvim-dap
     jdtls.setup.add_commands()
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "<A-o>", "<Cmd>lua require'jdtls'.organize_imports()<CR>", opts)
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>df", "<Cmd>lua require'jdtls'.test_class()<CR>", opts)
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>dn", "<Cmd>lua require'jdtls'.test_nearest_method()<CR>", opts)
-    vim.api.nvim_buf_set_keymap(bufnr, "v", "crv", "<Esc><Cmd>lua require('jdtls').extract_variable(true)<CR>", opts)
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "crv", "<Cmd>lua require('jdtls').extract_variable()<CR>", opts)
-    vim.api.nvim_buf_set_keymap(bufnr, "v", "crm", "<Esc><Cmd>lua require('jdtls').extract_method(true)<CR>", opts)
+    
+    if client.resolved_capabilities['document_highlight'] then
+        vim.api.nvim_command [[autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()]]
+        vim.api.nvim_command [[autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()]]
+        vim.api.nvim_command [[autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()]]
+    end
 end
 
 function M.start()
-    local root_dir = setup.find_root({'gradlew', '.git', 'mvnw', 'pom.xml'})
+    local root_dir = util.find_root({'gradlew', '.git', 'mvnw', 'pom.xml'})
     local home = os.getenv('HOME')
     local workspace_folder = home .. "/.cache/jdt/eclipse/" .. vim.fn.fnamemodify(root_dir, ":p:h:t")
     local config = mk_config()

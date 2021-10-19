@@ -89,5 +89,9 @@ function M.find_path(markers, bufname)
     end
 end
 
+function M.buf_close_current()
+    vim.api.nvim_buf_delete(0, {})
+end
+
 
 return M
