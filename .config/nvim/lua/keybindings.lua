@@ -14,12 +14,6 @@ map('n', '<Space>', '', opt)
 -- Set 'Space' key as leader key
 vim.g.mapleader = ' '
 
--- Select all file content
-map('n', '<C-a>', 'ggVG', opt)
-
--- Replace something with something
-map('n', '<Leader>s', ':%s//g<Left><Left>', { silent = false })
-
 -- Disable arrow keys
 map('', '<Up>', '', opt)
 map('i', '<Up>', '', opt)
@@ -43,7 +37,4 @@ map('n', '<C-l>', '<C-w>l', opt)
 -- Use Tab and Shift-Tab to move block of text in visual mode
 map('v', '<TAB>', '>gv', opt)
 map('v', '<S-TAB>', '<gv', opt)
-
--- Run make install clean
-map('n', '<Leader>mk', ':w!<CR>:!sudo make install clean<CR>', opt)
 

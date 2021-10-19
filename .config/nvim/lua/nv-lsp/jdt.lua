@@ -81,6 +81,11 @@ local function jdtls_on_attach(client, bufnr)
         vim.api.nvim_command [[autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()]]
         vim.api.nvim_command [[autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()]]
     end
+
+    vim.fn.sign_define('LspDiagnosticsSignError', {text = ''})
+    vim.fn.sign_define('LspDiagnosticsSignWarning', {text = ''})
+    vim.fn.sign_define('LspDiagnosticsSignInformation', {text = ''})
+    vim.fn.sign_define('LspDiagnosticsSignHint', {text = ''})
 end
 
 function M.start()
