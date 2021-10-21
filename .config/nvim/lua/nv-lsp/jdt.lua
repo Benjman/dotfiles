@@ -1,4 +1,5 @@
 local M = {}
+local common = require('nv-lsp.common')
 local config = require('nv-lsp.config')
 local jdtls = require('jdtls')
 local lsp_diag = require('nv-lsp.diagnostics')
@@ -65,13 +66,9 @@ local function jdtls_on_attach(client, bufnr)
     if client.resolved_capabilities.goto_definition then
         vim.api.nvim_buf_set_option(bufnr, 'tagfunc', "v:lua.lsp_ext.tagfunc")
     end
-    local opts = { silent = true; }
-    for _, mappings in pairs(key_mappings) do
-        local capability, mode, lhs, rhs = unpack(mappings)
-        if client.resolved_capabilities[capability] then
-            vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts)
-        end
-    end
+
+    common.on_attach(client, bufnr)
+    common.map_keys(client, bufnr, key_mappings)
 
     --jdtls.setup_dap() -- TODO setup dap https://github.com/mfussenegger/nvim-jdtls#debugger-via-nvim-dap
     jdtls.setup.add_commands()

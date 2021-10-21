@@ -1,44 +1,92 @@
 local M = {}
+local configs = require('lspconfig/configs')
+local util = require('lspconfig/util')
+local common = require('nv-lsp.common')
 
-local function on_attach(client)
-    --local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-    --buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+local key_mappings = {
+    {'definition', 'n', '<f5>',  '<cmd>echo "Hello"<cr>'},
+}
 
-    --local function map(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-    --local opts = { noremap = true, silent = true }
-    --map('n', '<f3>', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
-    --map('n', '<leader>gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
-    --map('n', '<leader>gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
-    --map('n', '<leader>go', '<cmd>lua require(\'nv-lsp.clangd\').outline()<cr>', opts)
-    --map('n', '<leader>gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
-    --map('n', '<c-k>', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
-    --map('n', '<a-T>', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
-    --map('i', '<c-space>', '<Cmd>lua vim.lsp.buf.completion()<CR>', opts)
-
-    if client.resolved_capabilities['document_highlight'] then
-        vim.api.nvim_command [[autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()]]
-        vim.api.nvim_command [[autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()]]
-        vim.api.nvim_command [[autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()]]
-    end
+local function on_attach(client, bufnr)
+    common.on_attach(client, bufnr)
+    --common.map_keys(client, bufnr, key_mappings)
 end
 
 function M.start()
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities.textDocument.completion.completionItem.snippetSupport = true
-    capabilities.textDocument.completion.completionItem.preselectSupport = true
+    -- https://clangd.llvm.org/extensions.html#switch-between-sourceheader
+    local function switch_source_header(bufnr)
+        bufnr = util.validate_bufnr(bufnr)
+        local params = { uri = vim.uri_from_bufnr(bufnr) }
+        vim.lsp.buf_request(bufnr, 'textDocument/switchSourceHeader', params,
+        util.compat_handler(function(err, result)
+            if err then
+                error(tostring(err))
+            end
+            if not result then
+                print 'Corresponding file cannot be determined'
+                return
+            end
+            vim.api.nvim_command('edit ' .. vim.uri_to_fname(result))
+        end)
+        )
+    end
 
-    require('lspconfig').clangd.setup({
-        capabilities = capabilities,
-        filetypes = { 'arduino', 'c', 'cpp', 'cuda', 'h', 'hpp', 'objc', 'objcpp', 'objective-c', 'objective-cpp' },
-        on_attach = on_attach,
-        root_dir = require('lspconfig.util').root_pattern({'compile_commands.json', '.git'}),
-    })
+    local root_pattern = util.root_pattern('compile_commands.json', 'compile_flags.txt', '.git')
 
-    vim.fn.sign_define('LspDiagnosticsSignError', {text = ''})
-    vim.fn.sign_define('LspDiagnosticsSignWarning', {text = ''})
-    vim.fn.sign_define('LspDiagnosticsSignInformation', {text = ''})
-    vim.fn.sign_define('LspDiagnosticsSignHint', {text = ''})
-    vim.g.completion_enable_snippet = 'snippets.nvim'
+    local default_capabilities = vim.tbl_deep_extend('force', util.default_config.capabilities or vim.lsp.protocol.make_client_capabilities(),
+        {
+            textDocument = {
+                completion = {
+                    editsNearCursor = true,
+                },
+            },
+            offsetEncoding = { 'utf-8', 'utf-16' },
+        }
+    )
+
+    configs.clangd = {
+        default_config = {
+            cmd = { 'clangd', '--background-index' },
+            filetypes = { 'c', 'cpp', 'objc', 'objcpp' },
+            root_dir = function(fname)
+                local filename = util.path.is_absolute(fname) and fname or util.path.join(vim.loop.cwd(), fname)
+                return root_pattern(filename) or util.path.dirname(filename)
+            end,
+            on_init = function(client, result)
+                if result.offsetEncoding then
+                    client.offset_encoding = result.offsetEncoding
+                end
+            end,
+            capabilities = default_capabilities,
+            --on_attach = on_attach,
+        },
+        commands = {
+            ClangdSwitchSourceHeader = {
+                function()
+                    switch_source_header(0)
+                end,
+                description = 'Switch between source/header',
+            },
+        },
+        docs = {
+            description = [[
+            https://clangd.llvm.org/installation.html
+
+            **NOTE:** Clang >= 9 is recommended! See [this issue for more](https://github.com/neovim/nvim-lsp/issues/23).
+
+            clangd relies on a [JSON compilation database](https://clang.llvm.org/docs/JSONCompilationDatabase.html) specified
+            as compile_commands.json or, for simpler projects, a compile_flags.txt.
+            For details on how to automatically generate one using CMake look [here](https://cmake.org/cmake/help/latest/variable/CMAKE_EXPORT_COMPILE_COMMANDS.html). Alternatively, you can use [Bear](https://github.com/rizsotto/Bear).
+            ]],
+            default_config = {
+                root_dir = [[root_pattern("compile_commands.json", "compile_flags.txt", ".git") or dirname]],
+                on_init = [[function to handle changing offsetEncoding]],
+                capabilities = [[default capabilities, with offsetEncoding utf-8]],
+            },
+        },
+    }
+
+    configs.clangd.switch_source_header = switch_source_header
 end
 
 return M
