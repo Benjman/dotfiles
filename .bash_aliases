@@ -6,6 +6,7 @@ alias df='df -h'                          # human-readable sizes
 alias doc='cd ~/Documents'
 alias docs='doc'
 alias down='cd ~/Downloads'
+alias fd='fd-find'
 alias free='free -m'                      # show sizes in MB
 alias l='ls'
 alias lib="cd ~/.local/lib/ben"

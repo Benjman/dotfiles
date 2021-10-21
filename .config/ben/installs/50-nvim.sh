@@ -19,7 +19,8 @@ sudo apt install -y \
     unzip \
     clangd \
     llvm \
-    ripgrep
+    ripgrep \
+    fd-find
 
 DIR=$HOME/.local/lib/neovim
 BRANCH=release-0.5
