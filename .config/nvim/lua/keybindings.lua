@@ -6,7 +6,7 @@ local function map(mode, lhs, rhs, opts)
     vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
-local opt = {}
+local opt = {noremap = true, silent = true}
 
 -- Disbale 'Space' key
 map('n', '<Space>', '', opt)
@@ -33,8 +33,12 @@ map('n', '<C-h>', '<C-w>h', opt)
 map('n', '<C-j>', '<C-w>j', opt)
 map('n', '<C-k>', '<C-w>k', opt)
 map('n', '<C-l>', '<C-w>l', opt)
+-- Resize windows
+map('n', '<C-A-k>', '<C-w>5+', opt)
+map('n', '<C-A-j>', '<C-w>5-', opt)
+map('n', '<C-A-h>', '<C-w>5<', opt)
+map('n', '<C-A-l>', '<C-w>5>', opt)
 
 -- Use Tab and Shift-Tab to move block of text in visual mode
 map('v', '<TAB>', '>gv', opt)
 map('v', '<S-TAB>', '<gv', opt)
-
