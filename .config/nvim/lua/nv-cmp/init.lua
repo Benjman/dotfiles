@@ -13,6 +13,7 @@ cmp.setup({
     },
     mapping = {
         ['<Tab>'] = mapping(mapping.select_next_item({ behavior = types.cmp.SelectBehavior.Select }), { 'i' }),
+        ['<S-Tab>'] = mapping(mapping.select_prev_item({ behavior = types.cmp.SelectBehavior.Select }), { 'i' }),
         ['<C-k>'] = mapping(mapping.select_prev_item({ behavior = types.cmp.SelectBehavior.Select }), { 'i' }),
         ['<C-j>'] = mapping(mapping.select_next_item({ behavior = types.cmp.SelectBehavior.Select }), { 'i' }),
         ['<C-d>'] = cmp.mapping.scroll_docs(-4),
