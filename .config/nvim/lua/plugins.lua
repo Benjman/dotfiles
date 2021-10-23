@@ -22,12 +22,15 @@ function(use)
     --     FLUFF BELOW     --
     -- ======================
 
-    use 'hrsh7th/nvim-cm'                          -- advanced completion beyond omnifunc
+    use { 'hrsh7th/nvim-cmp',                       -- advanced completion beyond omnifunc
+        requires = { 
+            { 'hrsh7th/cmp-nvim-lsp' },
+            { 'hrsh7th/cmp-buffer' } } }
+    use 'hrsh7th/vim-vsnip'               -- snippet support
     use { 'windwp/nvim-autopairs',                  -- pairs '', "", [], {}, (), ``
         requires = 'jiangmiao/auto-pairs' }
     use { 'lewis6991/gitsigns.nvim',                -- show when lines have been modified from repo
         requires = 'nvim-lua/plenary.nvim' }
-    use 'hrsh7th/vim-vsnip'                         -- snippet support
     use 'karb94/neoscroll.nvim'                     -- better scrolling experience (like <c-u> & <c-d>)
     use { 'nvim-telescope/telescope.nvim',          -- fuzzy finder
         requires = { { 'nvim-lua/popup.nvim' },
