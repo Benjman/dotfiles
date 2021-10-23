@@ -42,3 +42,5 @@ map('n', '<C-A-l>', '<C-w>5>', opt)
 -- Use Tab and Shift-Tab to move block of text in visual mode
 map('v', '<TAB>', '>gv', opt)
 map('v', '<S-TAB>', '<gv', opt)
+
+map('n', '<leader>vimc', '<cmd>source ~/.config/nvim/init.lua<cr>', opts)

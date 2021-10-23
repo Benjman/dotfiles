@@ -1,16 +1,16 @@
 vim.o.cmdheight = 2
 vim.o.expandtab = true
+vim.o.hlsearch = false
 vim.o.hidden = true
 vim.o.incsearch = true
 vim.o.scrolloff = 3
 vim.o.shiftwidth = 4
-vim.o.showtabline = 2
 vim.o.smartindent = true
-vim.o.splitright = true
 vim.o.tabstop = 4
 vim.o.timeoutlen = 500
 vim.o.undofile = true
 vim.o.updatetime = 300
+
 vim.wo.linebreak = true
 vim.wo.number = true
 vim.wo.relativenumber = true
