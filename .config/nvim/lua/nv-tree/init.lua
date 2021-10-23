@@ -2,6 +2,15 @@ require'nvim-tree'.setup {
     view = {
         -- if true the tree will resize itself after opening a file
         auto_resize = true,
+        diagnostics         = {
+            enable = false,
+            icons = {
+                hint = "",
+                info = "",
+                warning = "",
+                error = "",
+            }
+        },
     }
 }
 
