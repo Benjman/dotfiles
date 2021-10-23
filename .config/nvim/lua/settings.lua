@@ -1,6 +1,7 @@
 vim.o.cmdheight = 2
 vim.o.expandtab = true
 vim.o.hlsearch = false
+vim.o.wrap = false
 vim.o.hidden = true
 vim.o.incsearch = true
 vim.o.scrolloff = 3
