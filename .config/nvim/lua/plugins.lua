@@ -22,11 +22,13 @@ function(use)
     --     FLUFF BELOW     --
     -- ======================
 
-    use { 'hrsh7th/nvim-cmp',                       -- advanced completion beyond omnifunc
-        requires = { 
-            { 'hrsh7th/cmp-nvim-lsp' },
-            { 'hrsh7th/cmp-buffer' } } }
-    use 'hrsh7th/vim-vsnip'               -- snippet support
+    use 'hrsh7th/nvim-cmp'                          -- core completion lib
+    use 'hrsh7th/cmp-buffer'                        -- completion of current buffer
+    use 'hrsh7th/cmp-path'                          -- completion of file paths
+    use 'hrsh7th/cmp-nvim-lsp'                      -- lsp completion
+    use 'hrsh7th/cmp-nvim-lua'                      -- lua completion
+    use 'hrsh7th/vim-vsnip'                         -- snippet support
+
     use { 'windwp/nvim-autopairs',                  -- pairs '', "", [], {}, (), ``
         requires = 'jiangmiao/auto-pairs' }
     use { 'lewis6991/gitsigns.nvim',                -- show when lines have been modified from repo

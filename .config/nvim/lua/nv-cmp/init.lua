@@ -3,6 +3,7 @@ local mapping = require('cmp.config.mapping')
 local types = require('cmp.types')
 
 cmp.setup({
+
     snippet = {
         expand = function(args)
             vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
@@ -11,6 +12,7 @@ cmp.setup({
             -- require'snippy'.expand_snippet(args.body) -- For `snippy` users.
         end,
     },
+
     mapping = {
         ['<Tab>'] = mapping(mapping.select_next_item({ behavior = types.cmp.SelectBehavior.Select }), { 'i' }),
         ['<S-Tab>'] = mapping(mapping.select_prev_item({ behavior = types.cmp.SelectBehavior.Select }), { 'i' }),
@@ -22,13 +24,22 @@ cmp.setup({
         ['<C-e>'] = cmp.mapping.close(),
         ['<CR>'] = cmp.mapping.confirm({ select = true }),
     },
+
+    -- the order of sources matters, first sources are given priority over later ones
+    -- config options:
+    --      keyword_length
+    --      priority
+    --      max_item_count
+    --      (more?)
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
+        { name = 'nvim_lua' },
         { name = 'vsnip' }, -- For vsnip users.
-        -- { name = 'luasnip' }, -- For luasnip users.
-        -- { name = 'ultisnips' }, -- For ultisnips users.
-        -- { name = 'snippy' }, -- For snippy users.
-    }, {
-        { name = 'buffer' },
-    })
+        { name = 'buffer', keyword_length = 5 },
+    }),
+
+    experimental = {
+        native_menu = false,
+        ghost_text = true,
+    }
 })
