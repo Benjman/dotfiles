@@ -4,6 +4,7 @@ require('nvim-treesitter.configs').setup {
         'c',
         'cpp',
         'css',
+        'glsl',
         'html',
         'java',
         'javascript',
@@ -17,3 +18,10 @@ require('nvim-treesitter.configs').setup {
     }
 }
 
+-- GLSL filetypes
+vim.cmd([[
+    augroup glsl
+      au! glsl
+      autocmd BufNewFile,BufRead *.vert,*.tesc,*.tese,*.geom,*.frag,*.comp, :set filetype=glsl
+    augroup END
+]])
