@@ -5,6 +5,7 @@ local key_mappings = {
     {'goto_definition', 'n', '<f3>', '<cmd>lua vim.lsp.buf.definition()<cr>'},
     {'goto_definition', 'n', '<leader>gd', '<cmd>lua vim.lsp.buf.definition()<cr>'},
     {'goto_definition', 'n', '<leader>gD', '<cmd>lua vim.lsp.buf.declaration()<cr>'},
+    {'find_references', 'n', '<leader>gr', '<cmd>lua vim.lsp.buf.references()<cr>'},
     {'implementation', 'n', '<leader>gi',  '<Cmd>lua vim.lsp.buf.implementation()<CR>'},
     {'signature_help', 'i', '<c-space>',  '<Cmd>lua vim.lsp.buf.signature_help()<CR>'},
     {'rename', 'n', '<leader>rr',  '<cmd>lua vim.lsp.buf.rename(vim.fn.input("New name: "))<cr>'},
