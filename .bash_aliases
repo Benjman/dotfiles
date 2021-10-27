@@ -14,7 +14,7 @@ alias ll='ls -lah'
 alias make='make -j 32'
 alias more=less
 alias mpv='mpv --sid=no'
-alias notes='pwd=$PWD; [[ ! -d ~/Documents/notes ]] && mkdir ~/Documents/notes; cd ~/Documents/notes; $EDITOR . && cd $pwd'
+alias notes='pushd . >> /dev/null; [[ ! -d ~/Documents/notes ]] && mkdir ~/Documents/notes; cd ~/Documents/notes; $EDITOR . && popd >> /dev/null'
 alias nvim='[ ! -e /usr/local/bin/nvim ] && >&2 echo -e "\033[0;31m/usr/local/bin/nvim not found. Install with \"sh ~/.local/lib/ben/neovim-install.sh\"" || /usr/local/bin/nvim'
 alias nvimconfig='$EDITOR ~/.config/nvim'
 alias nvimrc='$EDITOR ~/.config/nvim/init.vim'
