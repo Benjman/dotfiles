@@ -6,3 +6,5 @@ if [ -d $HOME/.local/etc/profile.d ]; then
   done
   unset i
 fi
+
+[[ -d $HOME/.config/personal && -f $HOME/.config/personal/.profile ]] && . $HOME/.config/personal/.profile

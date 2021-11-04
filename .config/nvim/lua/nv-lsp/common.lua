@@ -3,10 +3,10 @@ local M = {}
 local key_mappings = {
     {'code_action', 'n', '<c-space>', '<cmd>lua vim.lsp.buf.code_action()<cr>'},
     {'goto_definition', 'n', '<f3>', '<cmd>lua vim.lsp.buf.definition()<cr>'},
-    {'goto_definition', 'n', '<leader>gd', '<cmd>lua vim.lsp.buf.definition()<cr>'},
-    {'goto_definition', 'n', '<leader>gD', '<cmd>lua vim.lsp.buf.declaration()<cr>'},
-    {'find_references', 'n', '<leader>gr', '<cmd>lua vim.lsp.buf.references()<cr>'},
-    {'implementation', 'n', '<leader>gi',  '<Cmd>lua vim.lsp.buf.implementation()<CR>'},
+    {'goto_definition', 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>'},
+    {'goto_definition', 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>'},
+    {'find_references', 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>'},
+    {'implementation', 'n', 'gi',  '<Cmd>lua vim.lsp.buf.implementation()<CR>'},
     {'signature_help', 'i', '<c-space>',  '<Cmd>lua vim.lsp.buf.signature_help()<CR>'},
     {'rename', 'n', '<leader>rr',  '<cmd>lua vim.lsp.buf.rename()<cr>'},
 

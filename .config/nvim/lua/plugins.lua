@@ -29,6 +29,7 @@ function(use)
     use 'hrsh7th/cmp-nvim-lua'                      -- lua completion
     use 'hrsh7th/vim-vsnip'                         -- snippet support
 
+    use 'mfussenegger/nvim-jdtls'                   -- Java LSP
     use { 'windwp/nvim-autopairs',                  -- pairs '', "", [], {}, (), ``
         requires = 'jiangmiao/auto-pairs' }
     use { 'lewis6991/gitsigns.nvim',                -- show when lines have been modified from repo
@@ -38,10 +39,7 @@ function(use)
         requires = { { 'nvim-lua/popup.nvim' },
             { 'nvim-lua/plenary.nvim' },
             { 'nvim-telescope/telescope-fzy-native.nvim' } } }
+    use 'tpope/vim-fugitive'                        -- git integration
 
-    ---- Java LSP
-    --use 'mfussenegger/nvim-jdtls'
-    ---- GLSL syntax highlighting
-    --use 'tikhomirov/vim-glsl'
 end
 )
