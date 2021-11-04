@@ -1,0 +1,6 @@
+[submodule ".password-store"]
+	path = .password-store
+	url = git@github.com:Benjman/password-store.git
+[submodule "/home/ben/.config/private"]
+	path = /home/ben/.config/private
+	url = git@github.com:Benjman/private.git
