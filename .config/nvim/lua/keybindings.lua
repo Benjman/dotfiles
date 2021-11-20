@@ -44,3 +44,10 @@ map('v', '<TAB>', '>gv', opt)
 map('v', '<S-TAB>', '<gv', opt)
 
 map('n', '<leader>vimc', '<cmd>source ~/.config/nvim/init.lua<cr>', opts)
+
+-- LSP stuff
+map('n', '<leader>ls', '<cmd>LspStart<cr>')
+map('n', '<leader>lr', '<cmd>LspRestart<cr>')
+
+-- escape terminal-mode with Esc
+vim.api.nvim_exec([[ tnoremap <Esc> <C-\><C-n> ]], true)
