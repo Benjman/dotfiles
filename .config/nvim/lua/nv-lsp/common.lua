@@ -8,7 +8,7 @@ local key_mappings = {
     {'find_references', 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>'},
     {'implementation', 'n', 'gi',  '<Cmd>lua vim.lsp.buf.implementation()<CR>'},
     {'signature_help', 'i', '<c-space>',  '<Cmd>lua vim.lsp.buf.signature_help()<CR>'},
-    {'rename', 'n', '<leader>rr',  '<cmd>lua vim.lsp.buf.rename(vim.fn.input("New name: "))<cr>'},
+    {'rename', 'n', '<leader>rr',  '<cmd>lua vim.lsp.buf.rename()<cr>'},
 
     --vim.api.nvim_buf_set_keymap(bufnr, 'n', ']w', '<Cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
     --vim.api.nvim_buf_set_keymap(bufnr, 'n', '[w', '<Cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
