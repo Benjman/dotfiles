@@ -21,7 +21,7 @@ require('nvim-treesitter.configs').setup {
 -- GLSL filetypes
 vim.cmd([[
     augroup glsl
-      au! glsl
+      autocmd! glsl
       autocmd BufNewFile,BufRead *.vert,*.tesc,*.tese,*.geom,*.frag,*.comp, :set filetype=glsl
     augroup END
 ]])
