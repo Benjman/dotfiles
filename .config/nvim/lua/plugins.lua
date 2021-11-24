@@ -40,6 +40,7 @@ function(use)
             { 'nvim-lua/plenary.nvim' },
             { 'nvim-telescope/telescope-fzy-native.nvim' } } }
     use 'tpope/vim-fugitive'                        -- git integration
+    use 'norcalli/nvim-colorizer.lua'               -- hex colorizer
 
 end
 )

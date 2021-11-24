@@ -11,6 +11,7 @@ require 'nv-lsp'            -- language servers
 
 -- Fluff plugins:
 require 'nv-cmp'            -- tab completion
+require 'nv-colorizer'      -- bg colorizing of hex, rgb, hsl, etc.
 require 'nv-autopairs'      -- auto pairs '', "", [], {}, (), ``
 require 'nv-gitsigns'       -- line level change indicators
 require 'nv-vsnip'          -- snippets
