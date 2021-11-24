@@ -29,6 +29,5 @@ alias vim='$EDITOR'
 alias vimc='vimconfig'
 alias vimconfig='nvimconfig'
 alias vimrc='nvimrc'
-alias youtube-dl-a='youtube-dl -f bestaudio/best'
-alias youtube-dl='youtube-dl --force-ipv4'
+alias youtube-dl='yt-dlp'
 
