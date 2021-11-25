@@ -49,5 +49,11 @@ map('n', '<leader>vimc', '<cmd>source ~/.config/nvim/init.lua<cr>', opts)
 map('n', '<leader>ls', '<cmd>LspStart<cr>')
 map('n', '<leader>lr', '<cmd>LspRestart<cr>')
 
--- escape terminal-mode with Esc
+-- escape terminal-mode
 vim.api.nvim_exec([[ tnoremap <Esc> <C-\><C-n> ]], true)
+
+-- Spelling
+map('n', '<leader>sn', ']s', opts)  -- next misspell
+map('n', '<leader>sp', '[s', opts)  -- previous misspell
+map('n', '<leader>sa', 'zg', opts)  -- add word to spellfile
+map('n', '<leader>sr', 'zug', opts)  -- remove word to spellfile
