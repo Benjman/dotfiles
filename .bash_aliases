@@ -19,7 +19,7 @@ alias nvim='[ ! -e /usr/local/bin/nvim ] && >&2 echo -e "\033[0;31m/usr/local/bi
 alias nvimconfig='$EDITOR ~/.config/nvim'
 alias nvimrc='$EDITOR ~/.config/nvim/init.vim'
 alias passotp='pass otp code --clip'
-alias profile.d='$EDITOR ~/.local/etc/profile.d'
+alias profile.d='$EDITOR ~/.local/etc/profile.d && source ~/.profile'
 alias profile='$EDITOR ~/.profile && source ~/.profile'
 alias rsync='rsync -v'
 alias src='cd ~/src'
@@ -30,4 +30,4 @@ alias vimc='vimconfig'
 alias vimconfig='nvimconfig'
 alias vimrc='nvimrc'
 alias youtube-dl='yt-dlp'
-
+alias man="Man "
