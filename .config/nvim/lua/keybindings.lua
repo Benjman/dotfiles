@@ -51,6 +51,10 @@ map('n', '<leader>lr', '<cmd>LspRestart<cr>', opt)
 
 -- escape terminal-mode
 map('t', '<Esc>', '<C-\\><C-n>', opt)
+map('t', '<C-h>', '<C-\\><C-n> <C-h>', opt)
+map('t', '<C-j>', '<C-\\><C-n> <C-j>', opt)
+map('t', '<C-k>', '<C-\\><C-n> <C-k>', opt)
+map('t', '<C-l>', '<C-\\><C-n> <C-l>', opt)
 
 -- Spelling
 map('n', '<leader>sn', ']s',  opts)  -- next misspell
