@@ -30,18 +30,17 @@ cmp.setup({
     }
 })
 
--- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+-- Searc mode sources
 cmp.setup.cmdline('/', {
     sources = {
-        { name = 'buffer' }
+        { name = 'buffer' },
     }
 })
 
--- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+-- Command mode sources
 cmp.setup.cmdline(':', {
     sources = cmp.config.sources({
-        { name = 'path' }
-    }, {
-        { name = 'cmdline' }
+        { name = 'cmdline' },
+        { name = 'path' },
     })
 })

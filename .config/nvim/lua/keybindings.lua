@@ -15,13 +15,13 @@ map('n', '<Space>', '', opt)
 vim.g.mapleader = ' '
 
 -- Disable arrow keys
-map('', '<Up>', '', opt)
-map('i', '<Up>', '', opt)
-map('', '<Down>', '', opt)
-map('i', '<Down>', '', opt)
-map('', '<Left>', '', opt)
-map('i', '<Left>', '', opt)
-map('', '<Right>', '', opt)
+map('',  '<Up>',    '', opt)
+map('i', '<Up>',    '', opt)
+map('',  '<Down>',  '', opt)
+map('i', '<Down>',  '', opt)
+map('',  '<Left>',  '', opt)
+map('i', '<Left>',  '', opt)
+map('',  '<Right>', '', opt)
 map('i', '<Right>', '', opt)
 
 -- Move selected line / block of text in visual mode
@@ -33,6 +33,7 @@ map('n', '<C-h>', '<C-w>h', opt)
 map('n', '<C-j>', '<C-w>j', opt)
 map('n', '<C-k>', '<C-w>k', opt)
 map('n', '<C-l>', '<C-w>l', opt)
+--
 -- Resize windows
 map('n', '<C-A-k>', '<C-w>5+', opt)
 map('n', '<C-A-j>', '<C-w>5-', opt)
@@ -43,17 +44,16 @@ map('n', '<C-A-l>', '<C-w>5>', opt)
 map('v', '<TAB>', '>gv', opt)
 map('v', '<S-TAB>', '<gv', opt)
 
-map('n', '<leader>vimc', '<cmd>source ~/.config/nvim/init.lua<cr>', opts)
-
 -- LSP stuff
-map('n', '<leader>ls', '<cmd>LspStart<cr>')
-map('n', '<leader>lr', '<cmd>LspRestart<cr>')
+map('n', '<leader>ls', '<cmd>LspStart<cr>', opt)
+map('n', '<leader>lS', '<cmd>LspStop<cr>', opt)
+map('n', '<leader>lr', '<cmd>LspRestart<cr>', opt)
 
 -- escape terminal-mode
-vim.api.nvim_exec([[ tnoremap <Esc> <C-\><C-n> ]], true)
+map('t', '<Esc>', '<C-\\><C-n>', opt)
 
 -- Spelling
-map('n', '<leader>sn', ']s', opts)  -- next misspell
-map('n', '<leader>sp', '[s', opts)  -- previous misspell
-map('n', '<leader>sa', 'zg', opts)  -- add word to spellfile
+map('n', '<leader>sn', ']s',  opts)  -- next misspell
+map('n', '<leader>sp', '[s',  opts)  -- previous misspell
+map('n', '<leader>sa', 'zg',  opts)  -- add word to spellfile
 map('n', '<leader>sr', 'zug', opts)  -- remove word to spellfile

@@ -1,46 +1,101 @@
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-    vim.cmd 'packadd packer.nvim'
+  fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+  vim.cmd 'packadd packer.nvim'
 end
 
 return require('packer').startup(
 function(use)
-    -- -------------------------
-    --     MINIMAL CONFIG     --
-    -- =========================
+  -- -------------------------
+  --     MINIMAL CONFIG     --
+  -- =========================
 
-    use 'folke/tokyonight.nvim'                     -- make theme pretty
-    use 'nvim-treesitter/nvim-treesitter'           -- make syntax pretty
-    use { 'kyazdani42/nvim-tree.lua',               -- file navigation
-        requires = 'kyazdani42/nvim-web-devicons' }
-    use 'neovim/nvim-lspconfig'                     -- language servers
+  -- theme
+  use {
+    'folke/tokyonight.nvim',
+    config = require('nv-theme'),
+  }
+
+  -- syntax highlighting
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    config = require('nv-treesitter'),
+  }
+
+  -- file navigation
+  use {
+    'kyazdani42/nvim-tree.lua',
+    requires = 'kyazdani42/nvim-web-devicons',
+    config = require('nv-nvimtree'),
+  }
+
+  -- language server
+  use {
+    'neovim/nvim-lspconfig',
+    requires = {
+      'mfussenegger/nvim-jdtls',
+    },
+    config = require('nv-lsp'),
+  }
 
 
-    -- ----------------------
-    --     FLUFF BELOW     --
-    -- ======================
+  -- ----------------------
+  --     FLUFF BELOW     --
+  -- ======================
 
-    use 'hrsh7th/nvim-cmp'                          -- core completion lib
-    use 'hrsh7th/cmp-buffer'                        -- completion of current buffer
-    use 'hrsh7th/cmp-path'                          -- completion of file paths
-    use 'hrsh7th/cmp-nvim-lsp'                      -- lsp completion
-    use 'hrsh7th/cmp-nvim-lua'                      -- lua completion
-    use 'hrsh7th/vim-vsnip'                         -- snippet support
+  use {
+    'hrsh7th/nvim-cmp',
+    requires = {
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path',
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-nvim-lua',
+      'hrsh7th/vim-vsnip',
+    },
+    config = require('nv-cmp'),
+  }
 
-    use 'mfussenegger/nvim-jdtls'                   -- Java LSP
-    use { 'windwp/nvim-autopairs',                  -- pairs '', "", [], {}, (), ``
-        requires = 'jiangmiao/auto-pairs' }
-    use { 'lewis6991/gitsigns.nvim',                -- show when lines have been modified from repo
-        requires = 'nvim-lua/plenary.nvim' }
-    use 'karb94/neoscroll.nvim'                     -- better scrolling experience (like <c-u> & <c-d>)
-    use { 'nvim-telescope/telescope.nvim',          -- fuzzy finder
-        requires = { { 'nvim-lua/popup.nvim' },
-            { 'nvim-lua/plenary.nvim' },
-            { 'nvim-telescope/telescope-fzy-native.nvim' } } }
-    use 'tpope/vim-fugitive'                        -- git integration
-    use 'norcalli/nvim-colorizer.lua'               -- hex colorizer
+  -- pairs '', "", [], {}, (), ``
+  use {
+    'windwp/nvim-autopairs',
+    requires = 'jiangmiao/auto-pairs',
+    config = require('nvim-autopairs').setup(),
+  }
+
+  -- show when lines have been modified from repo
+  use {
+    'lewis6991/gitsigns.nvim',
+    requires = 'nvim-lua/plenary.nvim',
+    config = require('gitsigns'),
+  }
+
+  -- smooth scrolling
+  use {
+    'karb94/neoscroll.nvim',
+    config = require('nv-neoscroll'),
+  }
+
+  use {
+    'nvim-telescope/telescope.nvim',
+    requires = {
+      { 'nvim-lua/popup.nvim' },
+      { 'nvim-lua/plenary.nvim' },
+      { 'nvim-telescope/telescope-fzy-native.nvim' },
+    },
+    config = require('nv-telescope'),
+  }
+
+  -- git integration
+  use {
+    'tpope/vim-fugitive',
+  }
+
+  -- hex colorizer
+  use {
+    'norcalli/nvim-colorizer.lua',
+    config = require('nv-colorizer'),
+  }
 
 end
 )
