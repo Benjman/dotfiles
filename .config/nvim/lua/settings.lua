@@ -11,6 +11,8 @@ vim.o.timeoutlen = 500
 vim.o.undofile = true
 vim.o.updatetime = 300
 vim.o.wrap = false
+vim.o.splitbelow = true
+vim.o.splitright = true
 
 vim.wo.linebreak = true
 vim.wo.number = true
