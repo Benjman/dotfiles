@@ -63,6 +63,12 @@ function(use)
     config = require('nvim-autopairs').setup(),
   }
 
+  -- sweet commenting actions
+  use {
+    'numToStr/Comment.nvim',
+    config = require('nv-comment'),
+  }
+
   -- show when lines have been modified from repo
   use {
     'lewis6991/gitsigns.nvim',
