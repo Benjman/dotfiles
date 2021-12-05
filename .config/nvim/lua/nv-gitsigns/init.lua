@@ -29,10 +29,11 @@ require('gitsigns').setup {
     ['x ih'] = ':<C-U>lua require"gitsigns".select_hunk()<CR>'
   },
   watch_index = {
-    interval = 1000
+    interval = 1000,
+    follow_files = true
   },
   current_line_blame = false,
-  sign_priority = 6,
+  sign_priority = 1,
   update_debounce = 100,
   status_formatter = nil, -- Use default
 }

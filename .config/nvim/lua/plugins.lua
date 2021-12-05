@@ -73,7 +73,7 @@ function(use)
   use {
     'lewis6991/gitsigns.nvim',
     requires = 'nvim-lua/plenary.nvim',
-    config = require('gitsigns'),
+    config = require('nv-gitsigns'),
   }
 
   -- smooth scrolling
