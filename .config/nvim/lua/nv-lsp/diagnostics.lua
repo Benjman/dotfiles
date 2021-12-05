@@ -42,8 +42,8 @@ do
       local diagnostics
       if has_errors then
         diagnostics = vim.tbl_filter(
-          function(x) return x.severity == vim.lsp.protocol.DiagnosticSeverity.Error end,
-          result.diagnostics
+        function(x) return x.severity == vim.lsp.protocol.DiagnosticSeverity.Error end,
+        result.diagnostics
         )
       else
         diagnostics = result.diagnostics
@@ -58,8 +58,8 @@ end
 
 function M.errors_to_quickfix()
   local items = diagnostics_to_items(
-    vim.lsp.diagnostic.get_all(),
-    function(d) return d.severity == vim.lsp.protocol.DiagnosticSeverity.Error end
+  vim.lsp.diagnostic.get_all(),
+  function(d) return d.severity == vim.lsp.protocol.DiagnosticSeverity.Error end
   )
   vim.fn.setqflist({}, 'r', {
     title = 'Language Server';
@@ -69,8 +69,8 @@ end
 
 function M.warnings_to_quickfix()
   local items = diagnostics_to_items(
-    vim.lsp.diagnostic.get_all(),
-    function(d) return d.severity == vim.lsp.protocol.DiagnosticSeverity.Warning end
+  vim.lsp.diagnostic.get_all(),
+  function(d) return d.severity == vim.lsp.protocol.DiagnosticSeverity.Warning end
   )
   vim.fn.setqflist({}, 'r', {
     title = 'Language Server';

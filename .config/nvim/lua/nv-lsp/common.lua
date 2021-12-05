@@ -1,6 +1,43 @@
 local M = {}
 
-local key_mappings = {
+--[[
+Key map table items in this structure:
+{capability, mode, keys, command}
+
+Example:
+key_maps = {
+  {'find_references', 'n', '<leader>gr', '<cmd>lua vim.lsp.buf.references()<cr>'}
+}
+--]]
+function M.map_keys(client, bufnr, key_maps)
+  local opts = { noremap = true, silent = true }
+  for _, mappings in pairs(key_maps) do
+    local capability, mode, lhs, rhs = unpack(mappings)
+    if capability == '' or client.resolved_capabilities[capability] then
+      vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts)
+    end
+  end
+end
+
+local function symbol_highlighting(client)
+  if client.resolved_capabilities['document_highlight'] then
+    vim.api.nvim_command [[autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()]]
+    vim.api.nvim_command [[autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()]]
+    vim.api.nvim_command [[autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()]]
+  end
+end
+
+local function sign_icons()
+  vim.fn.sign_define('LspDiagnosticsSignError', {text = ''})
+  vim.fn.sign_define('LspDiagnosticsSignWarning', {text = ''})
+  vim.fn.sign_define('LspDiagnosticsSignInformation', {text = ''})
+  vim.fn.sign_define('LspDiagnosticsSignHint', {text = ''})
+end
+
+local function key_mappings(client, bufnr)
+  M.map_keys(client, bufnr, {
+    -- Structure:
+    -- {capability, mode, keys, command},
     {'code_action', 'n', '<c-space>', '<cmd>lua vim.lsp.buf.code_action()<cr>'},
     {'goto_definition', 'n', '<f3>', '<cmd>lua vim.lsp.buf.definition()<cr>'},
     {'goto_definition', 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>'},
@@ -12,40 +49,13 @@ local key_mappings = {
 
     --vim.api.nvim_buf_set_keymap(bufnr, 'n', ']w', '<Cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
     --vim.api.nvim_buf_set_keymap(bufnr, 'n', '[w', '<Cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-}
-
---[[
-Key map table items in this structure:
-    {capability, mode, keys, command}
-    
-    Example:
-        key_maps = {
-            {'find_references', 'n', '<leader>gr', '<cmd>lua vim.lsp.buf.references()<cr>'}
-        }
---]]
-function M.map_keys(client, bufnr, key_maps)
-    local opts = { noremap = true, silent = true }
-    for _, mappings in pairs(key_maps) do
-        local capability, mode, lhs, rhs = unpack(mappings)
-        if capability == '' or client.resolved_capabilities[capability] then
-            vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts)
-        end
-    end
+  })
 end
 
 function M.on_attach(client, bufnr)
-    if client.resolved_capabilities['document_highlight'] then
-        vim.api.nvim_command [[autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()]]
-        vim.api.nvim_command [[autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()]]
-        vim.api.nvim_command [[autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()]]
-    end
-
-    vim.fn.sign_define('LspDiagnosticsSignError', {text = ''})
-    vim.fn.sign_define('LspDiagnosticsSignWarning', {text = ''})
-    vim.fn.sign_define('LspDiagnosticsSignInformation', {text = ''})
-    vim.fn.sign_define('LspDiagnosticsSignHint', {text = ''})
-
-    M.map_keys(client, bufnr, key_mappings)
+  symbol_highlighting(client)
+  sign_icons()
+  key_mappings(client, bufnr)
 end
 
 return M
