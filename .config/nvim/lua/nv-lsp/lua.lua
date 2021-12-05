@@ -25,5 +25,6 @@ require('lspconfig').sumneko_lua.setup {
       },
     },
   },
+  on_attach = require('nv-lsp.common').on_attach,
 }
 

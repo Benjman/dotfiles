@@ -1,9 +1,9 @@
 local function map(mode, lhs, rhs, opts)
-    local options = {noremap = true}
-    if opts then
-        options = vim.tbl_extend('force', options, opts)
-    end
-    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+  local options = {noremap = true}
+  if opts then
+    options = vim.tbl_extend('force', options, opts)
+  end
+  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
 local opt = {noremap = true, silent = true}
@@ -61,7 +61,7 @@ map('t', '<C-k>', '<C-\\><C-n> <C-k>', opt)
 map('t', '<C-l>', '<C-\\><C-n> <C-l>', opt)
 
 -- Spelling
-map('n', '<leader>sn', ']s',  opts)  -- next misspell
-map('n', '<leader>sp', '[s',  opts)  -- previous misspell
-map('n', '<leader>sa', 'zg',  opts)  -- add word to spellfile
-map('n', '<leader>sr', 'zug', opts)  -- remove word to spellfile
+map('n', '<leader>sn', ']s',  opt)  -- next misspell
+map('n', '<leader>sp', '[s',  opt)  -- previous misspell
+map('n', '<leader>sa', 'zg',  opt)  -- add word to spellfile
+map('n', '<leader>sr', 'zug', opt)  -- remove word to spellfile
