@@ -62,8 +62,9 @@ require('telescope').load_extension('fzy_native')
 local opt = {silent = true, noremap = true}
 local map = vim.api.nvim_set_keymap
 
-map('n', 'ff', '<cmd>lua require(\'telescope.builtin\').find_files()<cr>', opt)
-map('n', 'fg', '<cmd>lua require(\'telescope.builtin\').live_grep()<cr>', opt)
-map('n', 'fb', '<cmd>lua require(\'telescope.builtin\').buffers()<cr>', opt)
-map('n', 'fh', '<cmd>lua require(\'telescope.builtin\').help_tags()<cr>', opt)
-
+map('n', '<leader>ff', '<cmd>lua require(\'telescope.builtin\').find_files()<cr>', opt)
+map('n', '<leader>fg', '<cmd>lua require(\'telescope.builtin\').live_grep()<cr>', opt)
+map('n', '<leader>fb', '<cmd>lua require(\'telescope.builtin\').buffers()<cr>', opt)
+map('n', '<leader>fh', '<cmd>lua require(\'telescope.builtin\').help_tags()<cr>', opt)
+map('n', '<leader>ft', '<cmd>lua require(\'telescope.builtin\').builtin()<cr>', opt)
+map('n', '<leader>fr', '<cmd>lua require(\'telescope.builtin\').lsp_references()<cr>', opt)
