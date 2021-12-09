@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-BRANCH=v0.5.1
+BRANCH=
 REPO=https://github.com/neovim/neovim.git
 
 [ -d /tmp/neovim ] && rm -r /tmp/neovim
@@ -9,27 +9,27 @@ REPO=https://github.com/neovim/neovim.git
 mkdir -p /tmp/neovim
 
 sudo apt install -y \
-    autoconf \
-    automake \
-    cmake \
-    make \
-    curl \
-    g++ \
-    gettext \
-    libtool \
-    libtool-bin \
-    ninja-build \
-    pkg-config \
-    python \
-    python3 \
-    python3-pip \
-    unzip \
-    clangd \
-    llvm \
-    ripgrep \
-    fd-find
+   autoconf \
+   automake \
+   cmake \
+   make \
+   curl \
+   g++ \
+   gettext \
+   libtool \
+   libtool-bin \
+   ninja-build \
+   pkg-config \
+   python \
+   python3 \
+   python3-pip \
+   unzip \
+   clangd \
+   llvm \
+   ripgrep \
+   fd-find
 
-git clone --branch $BRANCH $REPO /tmp/neovim
+git clone $REPO /tmp/neovim
 
 pushd .
 
@@ -38,5 +38,25 @@ make CMAKE_BUILD_TYPE=Release
 sudo make install
 
 nvim --version
+
+
+### install language servers
+# jdtls
+jdtls_ver=$(curl -s https://download.eclipse.org/jdtls/milestones/ | \
+   grep -oP "\<div id='dirlist'\>.*</div>" | \
+   sed 's/\<tr/\r\n/g' | \
+   tail -n 2 | \
+   head -n 1 | \
+   grep -oh "href='.*'>" | \
+   grep -o "'.*'" | \
+   sed "s/'//g")
+
+wget -O /tmp/jdtls.tar.gz https://download.eclipse.org$(curl -s https://download.eclipse.org$jdtls_ver/ | \
+    grep -oP "edit-copy.*<a href='.*tar.gz'" | \
+    grep -o "='.*" | \
+    sed "s/[=']//g")
+
+mkdir ~/.local/lib/jdtls
+tar -xf /tmp/jdtls.tar.gz -C ~/.local/lib/jdtls
 
 popd
