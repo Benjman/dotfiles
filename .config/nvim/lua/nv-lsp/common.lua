@@ -52,10 +52,20 @@ local function key_mappings(client, bufnr)
   })
 end
 
+local function lsp_signature(bufnr)
+  require 'lsp_signature'.on_attach({
+    bind = true,
+    handler_opts = {
+      border = "rounded"
+    }
+  }, bufnr)
+end
+
 function M.on_attach(client, bufnr)
   symbol_highlighting(client)
   sign_icons()
   key_mappings(client, bufnr)
+  lsp_signature(bufnr)
 end
 
 return M

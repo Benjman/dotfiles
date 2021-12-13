@@ -35,6 +35,7 @@ function(use)
     'neovim/nvim-lspconfig',
     requires = {
       'mfussenegger/nvim-jdtls',
+      'ray-x/lsp_signature.nvim',
     },
     config = require('nv-lsp'),
   }
