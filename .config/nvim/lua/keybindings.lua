@@ -65,3 +65,5 @@ map('n', '<leader>sn', ']s',  opt)  -- next misspell
 map('n', '<leader>sp', '[s',  opt)  -- previous misspell
 map('n', '<leader>sa', 'zg',  opt)  -- add word to spellfile
 map('n', '<leader>sr', 'zug', opt)  -- remove word to spellfile
+
+map('n', 'gx', ':silent !$BROWSER <cWORD> &<cr>', opt)
