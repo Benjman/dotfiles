@@ -1,3 +1,9 @@
+vim.o.expandtab=true
+vim.o.tabstop=2
+vim.o.softtabstop=2
+vim.o.shiftwidth=2
+
+-- lsp
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
@@ -27,4 +33,3 @@ require('lspconfig').sumneko_lua.setup {
   },
   on_attach = require('nv-lsp.common').on_attach,
 }
-

@@ -36,8 +36,8 @@ function(use)
     requires = {
       'mfussenegger/nvim-jdtls',
       'ray-x/lsp_signature.nvim',
-    },
-    config = require('nv-lsp'),
+      'mfussenegger/nvim-dap',
+    }
   }
 
 
