@@ -2,34 +2,36 @@
 set -e
 
 BRANCH=""
-
 [[ ! -z "$BRANCH" ]] && BRANCH="--branch ${BRANCH}"
-
-[ -d /tmp/neovim ] && rm -rf /tmp/neovim
-
-mkdir -p /tmp/neovim
 
 sudo apt install -y \
    autoconf \
    automake \
+   clangd \
    cmake \
-   make \
    curl \
+   fd-find \
    g++ \
    gettext \
    libtool \
    libtool-bin \
+   llvm \
+   make \
    ninja-build \
+   nodejs \
+   npm \
    pkg-config \
    python \
    python3 \
    python3-pip \
-   unzip \
-   clangd \
-   llvm \
    ripgrep \
-   fd-find
+   ruby-dev \
+   rustc \
+   unzip
 
+git clone git@github.com:Benjman/Neovim-from-scratch.git ~/.config/nvim
+
+[ -d /tmp/neovim ] && rm -rf /tmp/neovim
 git clone $BRANCH -- https://github.com/neovim/neovim.git /tmp/neovim
 
 pushd . > /dev/null
@@ -38,6 +40,11 @@ cd /tmp/neovim
 make CMAKE_BUILD_TYPE=Release
 sudo make install
 
-nvim --version
+python3 -m pip install --user --upgrade pynvim
+npm config set prefix '~/.local/share/npm'
+npm install -g neovim \
+  tree-sitter-cli
 
 popd > /dev/null
+
+nvim --version
