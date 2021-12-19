@@ -12,5 +12,4 @@ export VISUAL=$EDITOR
 
 export PATH=$HOME/.local/bin:$PATH
 
-# sets escape to capslock:WQ
 setxkbmap -option caps:swapescape
