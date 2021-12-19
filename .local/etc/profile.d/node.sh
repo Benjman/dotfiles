@@ -1,4 +1,2 @@
-export GEM_HOME=$HOME/.config/.gem
-export PATH=$GEM_HOME/bin:$PATH
-export PATH=~/.config/npm/bin:$PATH
-
+export NPM_HOME=$HOME/.local/share/npm
+export PATH=$NPM_HOME/bin:$PATH
