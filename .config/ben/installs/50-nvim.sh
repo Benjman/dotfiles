@@ -48,6 +48,16 @@ npm config set prefix '~/.local/share/npm'
 npm install -g neovim \
   tree-sitter-cli
 
+# install lazygit
+curl -s https://api.github.com/repos/jesseduffield/lazygit/releases | \
+  grep 'https://.*lazygit_.*Linux_32.*\.tar\.gz' | \
+  cut -d : -f 2,3 |  \
+  tr -d \" |  \
+  head -n 1 |  \
+  wget -O ~/.local/bin/lazygit.tar.gz -qi - && \
+  tar -xf ~/.local/bin/lazygit.tar.gz -C ~/.local/bin/ && \
+  rm ~/.local/bin/lazygit.tar.gz
+
 popd > /dev/null
 
 nvim --version
