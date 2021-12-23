@@ -54,9 +54,9 @@ curl -s https://api.github.com/repos/jesseduffield/lazygit/releases | \
   cut -d : -f 2,3 |  \
   tr -d \" |  \
   head -n 1 |  \
-  wget -O ~/.local/bin/lazygit.tar.gz -qi - && \
-  tar -xf ~/.local/bin/lazygit.tar.gz -C ~/.local/bin/ && \
-  rm ~/.local/bin/lazygit.tar.gz
+  wget -O /tmp/lazygit.tar.gz -qi - && \
+  tar -xf /tmp/lazygit.tar.gz -C /tmp && \
+  mv /tmp/lazygit ~/.local/bin
 
 popd > /dev/null
 
