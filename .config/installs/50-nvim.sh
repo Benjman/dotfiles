@@ -49,14 +49,10 @@ npm install -g neovim \
   tree-sitter-cli
 
 # install lazygit
-curl -s https://api.github.com/repos/jesseduffield/lazygit/releases | \
-  grep 'https://.*lazygit_.*Linux_32.*\.tar\.gz' | \
-  cut -d : -f 2,3 |  \
-  tr -d \" |  \
-  head -n 1 |  \
-  wget -O /tmp/lazygit.tar.gz -qi - && \
-  tar -xf /tmp/lazygit.tar.gz -C /tmp && \
-  mv /tmp/lazygit ~/.local/bin
+ +LAZYGIT_URL=$(curl -s https://api.github.com/repos/jesseduffield/lazygit/releases | \
+  grep -m1 -o 'https://.*lazygit_.*Linux_32.*\.tar\.gz')
+wget -c $LAZYGIT_URL -O - | tar -xz -C ~/.local/bin lazygit
+unset LAZYGIT_URL mv /tmp/lazygit ~/.local/bin
 
 popd > /dev/null
 
