@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 set -e
 
+[ ! -d ~/.local/bin ] && mkdir ~/.local/bin
+
 BRANCH=''
 [[ ! -z '$BRANCH' ]] && BRANCH='--branch ${BRANCH}'
-
-NVIM_CONFIG_URL='Benjman/Neovim-from-scratch.git'
 
 sudo apt install -y \
    autoconf \
@@ -31,8 +31,10 @@ sudo apt install -y \
    rustc \
    unzip
 
+NVIM_CONFIG_URL='Benjman/Neovim-from-scratch.git'
 git clone git@github.com:$NVIM_CONFIG_URL ~/.config/nvim 2> /dev/null || \
   git clone https://github.com/$NVIM_CONFIG_URL ~/.config/nvim
+unset NVIM_CONFIG_URL
 
 [ -d /tmp/neovim ] && rm -rf /tmp/neovim
 git clone $BRANCH -- https://github.com/neovim/neovim.git /tmp/neovim
@@ -49,10 +51,10 @@ npm install -g neovim \
   tree-sitter-cli
 
 # install lazygit
- +LAZYGIT_URL=$(curl -s https://api.github.com/repos/jesseduffield/lazygit/releases | \
-  grep -m1 -o 'https://.*lazygit_.*Linux_32.*\.tar\.gz')
+LAZYGIT_URL=$(curl -s https://api.github.com/repos/jesseduffield/lazygit/releases | \
+  grep -m1 -o 'https://github.com/jesseduffield/lazygit/releases/download/v\(\([0-9\.]\)\+\)/lazygit_\1_Linux_32-bit\.tar\.gz')
 wget -c $LAZYGIT_URL -O - | tar -xz -C ~/.local/bin lazygit
-unset LAZYGIT_URL mv /tmp/lazygit ~/.local/bin
+unset LAZYGIT_URL
 
 popd > /dev/null
 
