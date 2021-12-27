@@ -1,4 +1,5 @@
 ~/.config/dotfiles
+.ccls-*/
 .ben
 .cache
 .clangd*
