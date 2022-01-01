@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-[ ! -d ~/.local/bin ] && mkdir ~/.local/bin
+[ ! -d ~/.local/bin ] && mkdir -p ~/.local/bin
 
 BRANCH=''
 [[ ! -z '$BRANCH' ]] && BRANCH='--branch ${BRANCH}'
