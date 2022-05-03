@@ -2,6 +2,7 @@ alias NC='cd ~/Nextcloud'
 alias aliases='$EDITOR ~/.bash_aliases && source ~/.bash_aliases'
 alias bashrc='$EDITOR ~/.bashrc && source ~/.bashrc'
 alias config='/usr/bin/git --git-dir=$HOME/.config/dotfiles/ --work-tree=$HOME'
+alias configlg='lazygit --git-dir ~/.config/dotfiles --work-tree ~'
 alias cp="cp -i"                          # confirm before overwriting something
 alias df='df -h'                          # human-readable sizes
 alias doc='cd ~/Documents'
