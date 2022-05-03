@@ -3,8 +3,8 @@ set -e
 
 [ ! -d ~/.local/bin ] && mkdir -p ~/.local/bin
 
-BRANCH=''
-[[ ! -z '$BRANCH' ]] && BRANCH='--branch ${BRANCH}'
+BRANCH='v0.6.1'
+[[ ! -z "$BRANCH" ]] && BRANCH="--branch ${BRANCH}"
 
 sudo apt install -y \
    autoconf \
@@ -31,10 +31,12 @@ sudo apt install -y \
    rustc \
    unzip
 
-NVIM_CONFIG_URL='Benjman/Neovim-from-scratch.git'
-git clone git@github.com:$NVIM_CONFIG_URL ~/.config/nvim 2> /dev/null || \
-  git clone https://github.com/$NVIM_CONFIG_URL ~/.config/nvim
-unset NVIM_CONFIG_URL
+if [ ! -d ~/.config/nvim ]; then
+  NVIM_CONFIG_URL='Benjman/Neovim-from-scratch.git'
+  git clone git@github.com:$NVIM_CONFIG_URL ~/.config/nvim 2> /dev/null || \
+    git clone https://github.com/$NVIM_CONFIG_URL ~/.config/nvim
+  unset NVIM_CONFIG_URL
+fi
 
 [ -d /tmp/neovim ] && rm -rf /tmp/neovim
 git clone $BRANCH -- https://github.com/neovim/neovim.git /tmp/neovim
