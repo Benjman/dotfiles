@@ -3,11 +3,14 @@
 # This file checks if the transmission daemon is running, and if it is, it will add any
 # queued torrents in ~/.cache/torrent-queue
 
-[[ $# = 0 ]] && exit
+[[ $# -eq 0 ]] && exit
 
-if [ $(systemctl status transmission-daemon.service | grep '^\s\+Active: active' | wc -l) = 1 ]; then
-    transmission-remote --auth transmission:transmission --add $@
-else
-    [[ $(grep "^$1\$" ~/.cache/torrent-queue | wc -l) = 0 ]] && \
-        echo "$1" >> ~/.cache/torrent-queue
+# try to add to htpc first
+HTPC_URL=$(grep 'htpc' ~/.ssh/config -A3 | grep -o '\([0-9]\+\.\)\+[0-9]\{0,3\}' | head -n1)
+ping -c1 $HTPC_URL > /dev/null
+if [ $? -eq 0 ] && \
+  [ $(ssh htpc systemctl status transmission-daemon.service | grep '^\W\+Active: active' | wc -l) -eq 1 ]; then
+  transmission-remote $HTPC_URL:9091 --add --auth transmission:transmission $@
+  exit
 fi
+unset HTPC_URL
