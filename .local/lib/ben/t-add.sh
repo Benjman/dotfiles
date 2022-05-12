@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-# This file checks if the transmission daemon is running, and if it is, it will add any
-# queued torrents in ~/.cache/torrent-queue
-
 [[ $# -eq 0 ]] && exit
 
 # try to add to htpc first
