@@ -1,0 +1,27 @@
+#!/bin/sh
+export XDG_CACHE_HOME=$HOME/.cache
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_DATA_HOME=$HOME/.local/share
+
+export BROWSER=/bin/firefox
+export CARGO_HOME=$XDG_DATA_HOME/cargo
+export EDITOR=/bin/nvim
+export GEM_HOME=$XDG_DATA_HOME/ruby/gem
+export GNUPGHOME=$XDG_DATA_HOME/gnupg
+export GOPATH=$XDG_DATA_HOME/go
+export HISTCONTROL=ignoreboth
+export JAVA_HOME=/usr/lib/jvm/default
+export MANPAGER='nvim +Man!'
+export MANWIDTH=999
+export MAVEN_HOME=/opt/maven
+export NODE_HOME=$XDG_DATA_HOME/node
+export PASSWORD_STORE_DIR=$XDG_DATA_HOME/password-store
+export VISUAL=$EDITOR
+
+# removing the `.nv` directory from the home directory (see https://bbs.archlinux.org/viewtopic.php?id=166814):
+export __GL_SHADER_DISK_CACHE_PATH=$XDG_DATA_HOME/nvidia
+
+export PATH="$CARGO_HOME/bin:$PATH"
+export PATH="$GEM_HOME/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$NODE_HOME/bin:$PATH"

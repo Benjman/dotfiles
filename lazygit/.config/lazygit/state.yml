@@ -1,0 +1,13 @@
+lastupdatecheck: 0
+recentrepos:
+- /home/ben/dotfiles
+- /tmp/dotfiles
+- /home/ben/.config/nvim
+- /home/ben/src/uinta
+- /home/ben/src/tkp
+startuppopupversion: 5
+customcommandshistory:
+- github deploy action
+- qa
+- q
+hidecommandlog: false
