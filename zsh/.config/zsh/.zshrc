@@ -22,7 +22,7 @@ setopt HIST_REDUCE_BLANKS
 stty stop undef		# Disable ctrl-s to freeze terminal.
 zle_highlight=('paste:none')
 
-source "$ZDOTDIR/functions"
+source "$ZDOTDIR/zsh-functions"
 
 # beeping is annoying
 unsetopt BEEP
@@ -46,10 +46,10 @@ autoload -Uz colors && colors
 source /etc/profile.d/vte.sh
 
 # Normal files to source
-zsh_add_file "exports"
-zsh_add_file "vim-mode"
-zsh_add_file "aliases"
-zsh_add_file "prompt"
+zsh_add_file "zsh-exports"
+zsh_add_file "zsh-vim-mode"
+zsh_add_file "zsh-aliases"
+zsh_add_file "zsh-prompt"
 
 # Plugins
 # For more plugins: https://github.com/unixorn/awesome-zsh-plugins

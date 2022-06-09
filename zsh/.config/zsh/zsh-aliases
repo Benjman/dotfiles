@@ -1,11 +1,11 @@
 #!/bin/sh
-alias aliases="$EDITOR $ZDOTDIR/aliases && source $ZDOTDIR/.zshrc"
+alias aliases="$EDITOR $ZDOTDIR/zsh-aliases && source $ZDOTDIR/.zshrc"
 alias cp="cp -i"
 alias df="df -h"
 alias dots="cd ~/.dotfiles"
 alias down="cd ~/Downloads"
 alias egrep="egrep --colour=auto"
-alias exports="pushd . > /dev/null && $EDITOR $ZDOTDIR/exports && source $ZDOTDIR/.zshrc"
+alias exports="pushd . > /dev/null && $EDITOR $ZDOTDIR/zsh-exports && source $ZDOTDIR/.zshrc"
 alias fgrep="fgrep --colour=auto"
 alias grep="grep --colour=auto"
 alias lg="lazygit"
