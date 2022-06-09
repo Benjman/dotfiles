@@ -11,6 +11,7 @@ export GNUPGHOME=$XDG_DATA_HOME/gnupg
 export GOPATH=$XDG_DATA_HOME/go
 export HISTCONTROL=ignoreboth
 export JAVA_HOME=/usr/lib/jvm/default
+export LESSHISTFILE="-"
 export MANPAGER='nvim +Man!'
 export MANWIDTH=999
 export MAVEN_HOME=/opt/maven
