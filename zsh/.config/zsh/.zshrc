@@ -88,9 +88,11 @@ compinit
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
-# TODO Remove these
-setxkbmap -option caps:escape
 xset r rate 210 40
+
+[[ "$XDG_SESSION_TYPE" == "X11" ]] && \
+  setxkbmap -option caps:escape \
+  gsettings set org.gnome.desktop.input-sources xkb-options "['caps:escale']"
 
 HISTFILE="$XDG_CACHE_HOME/zsh/history"
 HISTSIZE=1000000
