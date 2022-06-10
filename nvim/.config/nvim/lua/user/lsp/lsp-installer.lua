@@ -3,7 +3,6 @@ if not status_ok then
   return
 end
 
-local icons = require 'user.icons'
 local handlers = require 'user.lsp.handlers'
 
 local servers = {
@@ -16,14 +15,9 @@ local servers = {
 
 local settings = {
   ensure_installed = servers,
-  -- automatic_installation = false,
   ui = {
-    icons = {
-      server_installed = icons.ui.BigCircle,
-      server_pending = icons.ui.Download,
-      server_uninstalled = icons.ui.BigUnfilledCircle,
-    },
-    keymaps = require "user.keymaps".lsp_installer(),
+    icons = require "user.icons".lsp_installer,
+    keymaps = require "user.keymaps".lsp_installer,
   },
 
   log_level = vim.log.levels.INFO,
@@ -46,14 +40,18 @@ for _, server in pairs(servers) do
     capabilities = handlers.capabilities,
   }
 
-  if server == "sumneko_lua" then
-    local sumneko_opts = require "user.lsp.settings.sumneko_lua"
-    opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
-  end
+  -- if server == "bashls" then
+  --   print("Hit")
+  -- end
 
   if server == "clangd" then
     local clangd_opts = require "user.lsp.settings.clangd"
     opts = vim.tbl_deep_extend("keep", clangd_opts, opts)
+  end
+
+  if server == "sumneko_lua" then
+    local sumneko_opts = require "user.lsp.settings.sumneko_lua"
+    opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
   end
 
   lspconfig[server].setup(opts)

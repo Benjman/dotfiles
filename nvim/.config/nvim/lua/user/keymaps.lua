@@ -1,11 +1,10 @@
 local M = {}
-local opts = { noremap = true, silent = true }
-local set = vim.keymap.set
 local cmd = function(c) return "<cmd>" .. c .. "<cr>" end
+local opts = { noremap = true, silent = true }
 local pickers = require 'user.telescope.pickers'
+local set = vim.keymap.set
 
 M.setup = function()
-  set({ "i", "n" }, "<C-i>", vim.lsp.buf.signature_help, opts)
   set("n", "<C-Down>", cmd "resize +2", opts) -- window resizing
   set("n", "<C-Left>", cmd "vertical resize -2", opts) -- window resizing
   set("n", "<C-Right>", cmd "vertical resize +2", opts) -- window resizing
@@ -17,27 +16,28 @@ M.setup = function()
   set("n", "<C-n>", cmd "cnext", opts) -- jump to next item in quickfix list
   set("n", "<C-p>", cmd "cprev", opts) -- jump to previous item in quickfix list
   set("n", "<C-q>", cmd "cclose", opts) -- close quickfix list
+  set("n", "<leader>F", pickers.live_grep, opts)
   set("n", "<leader>e", cmd "RnvimrToggle", opts)
+  set("n", "<leader>f", pickers.find_files, opts)
   set("n", "<leader>lI", cmd "LspInstallInfo", opts)
   set("n", "<leader>la", vim.lsp.buf.code_action, opts)
+  set("n", "<leader>lg", vim.lsp.buf.rename, opts)
   set("n", "<leader>li", cmd "LspInfo", opts)
   set("n", "<leader>lr", vim.lsp.buf.rename, opts)
-  set("n", "gv", cmd "vert split | lua vim.lsp.buf.definition()", opts) -- goes to definition in a vertical split
+  set("n", "<leader>tb", pickers.buffers, opts)
+  set("n", "<leader>th", pickers.help_tags, opts)
   set("n", "gs", cmd "split      | lua vim.lsp.buf.definition()", opts) -- goes to definition in a split
+  set("n", "gv", cmd "vert split | lua vim.lsp.buf.definition()", opts) -- goes to definition in a vertical split
   set("v", "<", "<gv", opts) -- indentation without leaving visual mode
   set("v", ">", ">gv", opts) -- indentation without leaving visual mode
   set("v", "p", '"_dP', opts) -- replace selected with yanked
   set("x", "J", cmd "move '>+1gv-gv", opts) -- move selected down
   set("x", "K", cmd "move '<-2gv-gv", opts) -- move selected up
-
-  set("n", "<leader>f", pickers.find_files, opts)
-  set("n", "<leader>F", pickers.live_grep, opts)
-  set("n", "<leader>tb", pickers.buffers, opts)
-  set("n", "<leader>th", pickers.help_tags, opts)
 end
 
 M.lsp = function(bufnr)
   local lsp_opts = vim.tbl_deep_extend("force", { buffer = bufnr }, opts)
+  set({ "i", "n" }, "<C-e>", vim.lsp.buf.signature_help, lsp_opts)
   -- set("n", "<C-k>", vim.lsp.buf.signature_help,                  lsp_opts)
   -- set("n", "<leader>ca", vim.lsp.buf.code_action,                lsp_opts)
   -- set("n", "<leader>f", vim.diagnostic.open_float,               lsp_opts)
@@ -56,17 +56,15 @@ M.lsp = function(bufnr)
   vim.cmd [[ command! Format execute 'lua vim.lsp.buf.format({ async = true })' ]] -- TODO 0.7 autocommands
 end
 
-M.lsp_installer = function()
-  return {
-    toggle_server_expand = "<CR>",
-    install_server = "i",
-    update_server = "u",
-    check_server_version = "c",
-    update_all_servers = "U",
-    check_outdated_servers = "C",
-    uninstall_server = "X",
-  }
-end
+M.lsp_installer =  {
+  toggle_server_expand = "<CR>",
+  install_server = "i",
+  update_server = "u",
+  check_server_version = "c",
+  update_all_servers = "U",
+  check_outdated_servers = "C",
+  uninstall_server = "X",
+}
 
 M.cmp = function(cmp, luasnip)
   local check_backspace = function()
