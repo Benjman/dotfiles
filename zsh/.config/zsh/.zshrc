@@ -44,6 +44,7 @@ zle -N down-line-or-beginning-search
 autoload -Uz colors && colors
 
 source /etc/profile.d/vte.sh
+source $XDG_CONFIG_HOME/user-dirs.dirs
 
 # Normal files to source
 zsh_add_file "zsh-exports"
