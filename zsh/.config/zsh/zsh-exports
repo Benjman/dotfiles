@@ -19,7 +19,7 @@ export MANWIDTH=999
 export MAVEN_HOME=/opt/maven
 export NODE_HOME=$XDG_DATA_HOME/node
 export PAGER=/bin/less
-export PASSWORD_STORE_DIR=$XDG_DATA_HOME/password-store
+export PASSWORD_STORE_DIR=$XDG_CONFIG_HOME/password-store
 export VISUAL=$EDITOR
 
 # removing the `.nv` directory from the home directory (see https://bbs.archlinux.org/viewtopic.php?id=166814):
