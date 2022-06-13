@@ -5,7 +5,7 @@
   diffFilter = delta --color-only
 
 [delta]
-  navigate = true # use n and N to move between diff sections
+  navigate = true
 
 [merge]
   conflictstyle = diff3
@@ -22,3 +22,6 @@
 
 [alias]
 	logline = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+
+[pull]
+	ff = only
