@@ -92,7 +92,7 @@ bindkey '^e' edit-command-line
 xset r rate 210 40
 
 [[ "${XDG_SESSION_TYPE:u}" == "X11" ]] && setxkbmap -option caps:escape
-[[ "${XDG_SESSION_TYPE:u}" == "WAYLAND" ]] && gsettings set org.gnome.desktop.input-sources xkb-options "['caps:escale']"
+[[ "${XDG_SESSION_TYPE:u}" == "WAYLAND" ]] && gsettings set org.gnome.desktop.input-sources xkb-options "['caps:escape']"
 
 HISTFILE="$XDG_CACHE_HOME/zsh/history"
 HISTSIZE=1000000
