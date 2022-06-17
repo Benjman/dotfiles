@@ -17,7 +17,6 @@ static const char *colors[][3] = {
     [SchemeNorm] = {col_gray3, col_gray1, col_gray2},
     [SchemeSel] = {col_gray4, col_cyan, col_cyan},
 };
-
 /* tagging */
 static const char *tags[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
 
@@ -63,9 +62,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] =
     "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = {
-    "dmenu_run", "-m",      dmenumon, "-fn",    dmenufont, "-nb",     col_gray1,
-    "-nf",       col_gray3, "-sb",    col_cyan, "-sf",     col_gray4, NULL};
+static const char *dmenucmd[] = {"dmenu_run", "-m", dmenumon, NULL};
 static const char *termcmd[] = {"/bin/alacritty", NULL};
 
 static Key keys[] = {
@@ -93,9 +90,11 @@ static Key keys[] = {
     {MODKEY | ShiftMask, XK_period, tagmon, {.i = +1}},
 
     {MODKEY, XK_d, spawn, SHCMD("dmenu_run")},
-    {MODKEY| ShiftMask, XK_p, spawn, SHCMD("passmenu")},
+    {MODKEY | ShiftMask, XK_p, spawn, SHCMD("passmenu")},
     {MODKEY, XK_w, spawn, SHCMD("brave")},
     {MODKEY, XK_t, spawn, {.v = termcmd}},
+    {MODKEY, XK_d, spawn, SHCMD("dmenu_run")},
+    {MODKEY, XK_s, spawn, SHCMD("/home/ben/.local/lib/scripts/scriptsmenu.sh")},
 
     TAGKEYS(XK_1, 0) TAGKEYS(XK_2, 1) TAGKEYS(XK_3, 2) TAGKEYS(XK_4, 3)
         TAGKEYS(XK_5, 4) TAGKEYS(XK_6, 5) TAGKEYS(XK_7, 6) TAGKEYS(XK_8, 7)
