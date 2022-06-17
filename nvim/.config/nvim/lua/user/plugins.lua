@@ -77,6 +77,7 @@ return packer.startup(function(use)
   use "lunarvim/colorschemes"
   use "lunarvim/darkplus.nvim"
   use "rose-pine/neovim"
+  use "norcalli/nvim-colorizer.lua" -- color highlighting
 
   -- snippets
   use "L3MON4D3/LuaSnip" --snippet engine -- TODO does this need configuration?
