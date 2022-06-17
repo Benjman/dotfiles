@@ -10,14 +10,8 @@ if not status_ok then
 end
 
 local snip = ls.snippet
-local node = ls.snippet_node
-local text = ls.text_node
-local insert = ls.insert_node
+local snippets = require "user.snippets"
 local func = ls.function_node
-local choice = ls.choice_node
-local dynamicn = ls.dynamic_node
-
-local cpp = require "user.snippets.cpp"
 
 vim.keymap.set({ "i", "s" }, "<C-k>", ls.expand_or_jump, { silent = true })
 
@@ -32,20 +26,16 @@ ls.config.set_config {
 }
 
 ls.add_snippets(nil, {
-  cpp = {
-    snip({
-      trig = "headerguard",
-      namr = "Header guard",
-    }, {
-        func(cpp.header_guard, {}),
-    }),
-    snip({
-      trig = "another",
-      namr = "Another",
-      dscr = "This is another snip",
-    }, {
-        func(function() return "// Hello from another snippet!" end, {}),
-    }),
-  },
+  cpp = snippets.cpp,
+  sh = snippets.sh
+  -- sh = {
+  --   snip(snippets.sh.shebang),
+  -- },
 })
 
+-- snip({
+--   trig = "headerguard",
+--   namr = "Header guard",
+-- }, {
+--     func(cpp.header_guard, {}),
+-- }),

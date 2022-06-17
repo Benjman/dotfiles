@@ -2,9 +2,9 @@ local func = require 'luasnip'.function_node
 local snip = require 'luasnip'.snippet
 
 return {
-  snip({ trig = "headerguard", namr = "Header guard", }, {
+  snip({ trig = "#!", namr = "Bash Shebang", }, {
     func(function ()
-      return "// TODO implememt header guard snippet"
+      return "#!/bin/env /bin/bash"
     end, {}),
   }),
 }
