@@ -1,3 +1,2 @@
 #!/bin/sh
 export ZDOTDIR=$XDG_CONFIG_HOME/zsh
-export ZPLUGINS=$XDG_CACHE_HOME/zsh/plugins

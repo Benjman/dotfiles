@@ -10,6 +10,7 @@ export MANPAGER='nvim +Man!'
 export MANWIDTH=999
 export MAVEN_HOME=/opt/maven
 export PASSWORD_STORE_DIR=$XDG_CONFIG_HOME/password-store
+export ZPLUGINS=$XDG_CACHE_HOME/zsh/plugins
 
 # removing the `.nv` directory from the home directory (see https://bbs.archlinux.org/viewtopic.php?id=166814):
 export __GL_SHADER_DISK_CACHE_PATH=$XDG_DATA_HOME/nvidia
