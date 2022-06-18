@@ -1,5 +1,4 @@
-#!/bin/sh
-setopt appendhistory
+#!/bin/shsetopt appendhistory
 # some useful options (man zshoptions)
 setopt autocd extendedglob nomatch menucomplete
 setopt interactive_comments
@@ -43,9 +42,6 @@ zle -N down-line-or-beginning-search
 # Colors
 autoload -Uz colors && colors
 
-source /etc/profile.d/vte.sh
-source $XDG_CONFIG_HOME/user-dirs.dirs
-
 # Normal files to source
 zsh_add_file "zsh-exports"
 zsh_add_file "zsh-vim-mode"
@@ -88,11 +84,6 @@ compinit
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
-
-xset r rate 210 40
-
-[[ "${XDG_SESSION_TYPE:u}" == "X11" ]] && setxkbmap -option caps:escape
-[[ "${XDG_SESSION_TYPE:u}" == "WAYLAND" ]] && gsettings set org.gnome.desktop.input-sources xkb-options "['caps:escape']"
 
 HISTFILE="$XDG_CACHE_HOME/zsh/history"
 HISTSIZE=1000000

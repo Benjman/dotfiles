@@ -1,19 +1,18 @@
 # Status Bar
-dwmblocks &
+# dwmblocks &
 
 # Random Photo Every Login
 # feh --bg-fill --randomize ~/Pictures/wallpapers/* &
 
-feh --bg-fill ~/Pictures/wallpapers/mac/Mojave\ Night.jpg --bg-fill ~/Pictures/wallpapers/macos-cataline-night-6k.jpg/
-
 # Monitor Config
 # xrandr --auto --output DVI-D-0 --mode 2560x1440 --left-of HDMI-0
- 
-xrandr --output DP-1 --mode 2560x1440 --rate 59.95
-xrandr --auto --output HDMI-1 --mode 2560x1440 --left-of DP-1
+# xrandr --output DP-1 --mode 2560x1440 --rate 59.95
+# xrandr --auto --output HDMI-1 --mode 2560x1440 --left-of DP-1
+
+source /etc/profile.d/vte.sh
 
 # Network Manager Applet
-nm-applet --indicator &
+# nm-applet --indicator &
 
 # Don't Randomly Turn off
 xset s off
@@ -24,26 +23,27 @@ xset s noblank
 xset r rate 210 40
 
 # Environment variables set everywhere
-export EDITOR="nvim"
-export TERMINAL="kitty"
-export BROWSER="brave"
+export XDG_CACHE_HOME=$HOME/.cache
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_DATA_HOME=$HOME/.local/share
+source $XDG_CONFIG_HOME/user-dirs.dirs
+
+export BROWSER=/bin/brave
+export EDITOR=/bin/nvim
+export PAGER=/bin/less
+export VISUAL=$EDITOR
 
 # For QT Themes
 # export QT_QPA_PLATFORMTHEME=qt5ct
 
-# XDG Paths
-export XDG_CONFIG_HOME=$HOME/.config
-export XDG_CACHE_HOME=$HOME/.cache
-export XDG_DATA_HOME=$HOME/.local/share
-
 # Compositor
-picom -b
+# picom -b
 
 # Hide mouse when typing
 # xbanish &
 
 # Screenshots
-flameshot &
+# flameshot &
 
 # Bluetooth systray icon
 # blueman-applet &
@@ -57,13 +57,7 @@ flameshot &
 # Screenkey applet (this will break everything)
 # screenkey --start-disabled
 
-# remap caps to escape
-setxkbmap -option caps:escape
-# swap escape and caps
-# setxkbmap -option caps:swapescape
+[[ "${XDG_SESSION_TYPE:u}" == "X11" ]] && setxkbmap -option caps:escape
+[[ "${XDG_SESSION_TYPE:u}" == "WAYLAND" ]] && gsettings set org.gnome.desktop.input-sources xkb-options "['caps:escape']"
 
-# load Xresources
-# xrdb ~/.Xresources
-
-# zsh config dir
-# export ZDOTDIR=$HOME/.config/zsh
+xrdb ~/.Xresources
