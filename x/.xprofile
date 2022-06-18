@@ -1,3 +1,5 @@
+#!/bin/env /bin/bash
+
 # Status Bar
 # dwmblocks &
 
@@ -26,12 +28,17 @@ xset r rate 210 40
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_DATA_HOME=$HOME/.local/share
+
 source $XDG_CONFIG_HOME/user-dirs.dirs
+xrdb $XDG_CONFIG_HOME/x/Xresources
 
 export BROWSER=/bin/brave
 export EDITOR=/bin/nvim
 export PAGER=/bin/less
 export VISUAL=$EDITOR
+
+[[ "${XDG_SESSION_TYPE:u}" == "X11" ]] && setxkbmap -option caps:escape
+[[ "${XDG_SESSION_TYPE:u}" == "WAYLAND" ]] && gsettings set org.gnome.desktop.input-sources xkb-options "['caps:escape']"
 
 # For QT Themes
 # export QT_QPA_PLATFORMTHEME=qt5ct
@@ -56,8 +63,3 @@ export VISUAL=$EDITOR
 
 # Screenkey applet (this will break everything)
 # screenkey --start-disabled
-
-[[ "${XDG_SESSION_TYPE:u}" == "X11" ]] && setxkbmap -option caps:escape
-[[ "${XDG_SESSION_TYPE:u}" == "WAYLAND" ]] && gsettings set org.gnome.desktop.input-sources xkb-options "['caps:escape']"
-
-xrdb ~/.Xresources
