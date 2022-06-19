@@ -7,7 +7,10 @@ static const unsigned int borderpx = 1;  /* border pixel of windows */
 static const unsigned int snap     = 32; /* snap pixel */
 static const int showbar           = 1;  /* 0 means no bar */
 static const int topbar            = 1;  /* 0 means bottom bar */
-static const char *fonts[]         = {"monospace:size=10"};
+static const char *fonts[]         = {
+            "DejaVuSansMono Nerd Font:style=Regular:size=10",
+            "NotoColorEmoji:pixelsize=10:antialias=true:autohint=true",
+};
 // static const char dmenufont[]      = "monospace:size=10";
 static const char col_gray1[]  = "#222222";
 static const char col_gray2[]  = "#444444";
@@ -59,6 +62,8 @@ static const Layout layouts[] = {
     .v = (const char *[]) { "/bin/sh", "-c", cmd, NULL }                                                                         \
   }
 
+#define STATUSBAR "dwmblocks"
+
 /* commands */
 static char dmenumon[2]             = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[]       = {"dmenu_run", "-m", dmenumon, NULL};
@@ -109,7 +114,7 @@ static Key keys[] = {
  // {MODKEY,             XK_l,                     setmfact,       {.f = +0.05}                                        },
     {MODKEY,             XK_m,                     setlayout,      {.v = &layouts[2]}                                  },
     {MODKEY | ShiftMask, XK_l,                     spawn,          SHCMD("slock")                                      },
-    {MODKEY | ShiftMask, XK_p,                     spawn,          SHCMD("passmenu")                                   },
+    {MODKEY,             XK_p,                     spawn,          SHCMD("passmenu")                                   },
     {MODKEY | ShiftMask, XK_period,                tagmon,         {.i = +1}                                           },
     {MODKEY,             XK_period,                focusmon,       {.i = +1}                                           },
     {MODKEY | ShiftMask, XK_q,                     quit,           {0}                                                 },
@@ -119,6 +124,7 @@ static Key keys[] = {
     {MODKEY,             XK_t,                     setlayout,      {.v = &layouts[0]}                                  },
     {MODKEY,             XK_t,                     spawn,          {.v = termcmd}                                      },
     {MODKEY,             XK_w,                     spawn,          SHCMD("$BROWSER")                                   },
+    {MODKEY,             XK_x,                     spawn,          SHCMD("ls | dmenu -p \"hello\"")                    },
 };
 
 /* button definitions */
@@ -126,15 +132,18 @@ static Key keys[] = {
  * ClkClientWin, or ClkRootWin */
 static Button buttons[] = {
   /* click          mask    button   function        argument */
-    {ClkLtSymbol,   0,      Button1, setlayout,      {0}               },
-    {ClkLtSymbol,   0,      Button3, setlayout,      {.v = &layouts[2]}},
-    {ClkWinTitle,   0,      Button2, zoom,           {0}               },
-    {ClkStatusText, 0,      Button2, spawn,          {.v = termcmd}    },
     {ClkClientWin,  MODKEY, Button1, movemouse,      {0}               },
     {ClkClientWin,  MODKEY, Button2, togglefloating, {0}               },
     {ClkClientWin,  MODKEY, Button3, resizemouse,    {0}               },
+    {ClkLtSymbol,   0,      Button1, setlayout,      {0}               },
+    {ClkLtSymbol,   0,      Button3, setlayout,      {.v = &layouts[2]}},
+    {ClkStatusText, 0,      Button2, spawn,          {.v = termcmd}    },
+    {ClkStatusText, 0,      Button1, sigstatusbar,   {.i = 1}          },
+    {ClkStatusText, 0,      Button2, sigstatusbar,   {.i = 2}          },
+    {ClkStatusText, 0,      Button3, sigstatusbar,   {.i = 3}          },
     {ClkTagBar,     0,      Button1, view,           {0}               },
     {ClkTagBar,     0,      Button3, toggleview,     {0}               },
     {ClkTagBar,     MODKEY, Button1, tag,            {0}               },
     {ClkTagBar,     MODKEY, Button3, toggletag,      {0}               },
+    {ClkWinTitle,   0,      Button2, zoom,           {0}               },
 };
