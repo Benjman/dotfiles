@@ -42,19 +42,19 @@ export VISUAL=$EDITOR
 [[ "${XDG_SESSION_TYPE@u}" == "WAYLAND" ]] && gsettings set org.gnome.desktop.input-sources xkb-options "['caps:escape']"
 
 # lock screen after `n` minutes
-[[ -x xautolock && -x slock ]] && xautolock -time 5 -locker slock &
+[[ -x /usr/bin/xautolock && -x /usr/local/bin/slock ]] && xautolock -time 5 -locker slock &
 
 # For QT Themes
 # export QT_QPA_PLATFORMTHEME=qt5ct
 
 # Compositor
-[[ -x picom ]] && picom -b
+[[ -x /usr/bin/picom ]] && picom -b
 
 # Hide mouse when typing
-[[ -x xbanish ]] && xbanish &
+[[ -x /usr/bin/xbanish ]] && xbanish &
 
 # Screenshots
-[[ -x flameshot ]] && flameshot &
+[[ -x /usr/bin/flameshot ]] && flameshot &
 
 # Bluetooth systray icon
 # blueman-applet &
