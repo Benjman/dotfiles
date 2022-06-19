@@ -1,8 +1,5 @@
 #!/bin/env /bin/bash
 
-# Status Bar
-# dwmblocks &
-
 # Random Photo Every Login
 feh --bg-fill --randomize ~/.local/share/backgrounds
 
@@ -27,18 +24,27 @@ export XDG_CONFIG_HOME=$HOME/.config
 export XDG_DATA_HOME=$HOME/.local/share
 
 source $XDG_CONFIG_HOME/user-dirs.dirs
-xrdb $XDG_CONFIG_HOME/x/Xresources
+xrdb $XDG_CONFIG_HOME/x/Xresources & xrdbpid=$! # Uncomment to use Xresources colors/settings on startup
 
 export BROWSER=/bin/brave
 export EDITOR=/bin/nvim
 export PAGER=/bin/less
 export VISUAL=$EDITOR
 
+export PATH="$HOME/.local/bin:$PATH"
+
 # bind escape to caps
 [[ "${XDG_SESSION_TYPE@u}" == "X11" ]] && setxkbmap -option caps:escape
 [[ "${XDG_SESSION_TYPE@u}" == "WAYLAND" ]] && gsettings set org.gnome.desktop.input-sources xkb-options "['caps:escape']"
+# When caps lock is pressed only once, treat it as escape.
+killall xcape 2>/dev/null ; xcape -e 'Super_L=Escape'
+# Turn off caps lock if on since there is no longer a key for it.
+xset -q | grep "Caps Lock:\s*on" && xdotool key Caps_Lock
 
-# lock screen after `n` minutes
+# Status Bar
+[[ -x /usr/local/bin/dwmblocks ]] && dwmblocks &
+
+# lock screen after `--time n` minutes
 [[ -x /usr/bin/xautolock && -x /usr/local/bin/slock ]] && xautolock -time 5 -locker slock &
 
 # For QT Themes
@@ -53,6 +59,9 @@ export VISUAL=$EDITOR
 # Screenshots
 [[ -x /usr/bin/flameshot ]] && flameshot &
 
+# Audio
+[[ -x /usr/bin/pipewire ]] && pipewire &
+
 # Bluetooth systray icon
 # blueman-applet &
 
@@ -61,3 +70,6 @@ export VISUAL=$EDITOR
 
 # helps with puls audio
 # pasystray &
+
+# Ensure that xrdb has finished running before moving on to start the WM/DE.
+[ -n "$xrdbpid" ] && wait "$xrdbpid"
