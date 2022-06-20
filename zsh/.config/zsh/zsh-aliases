@@ -16,6 +16,7 @@ alias make="make -j32"
 alias mpv="mpv --sid=no"
 alias newsboaturls="$EDITOR $XDG_CONFIG_HOME/newsboat/urls"
 alias rc="pushd . > /dev/null && cd $ZDOTDIR && $EDITOR && source $ZDOTDIR/.zshrc && popd > /dev/null"
+alias src="cd ~/.local/src"
 alias ss="pushd . > /dev/null && cd ~/.local/lib/scripts && $EDITOR && popd > /dev/null"
 alias trash="trash --trash-dir=/tmp/trash"
 alias v=$EDITOR

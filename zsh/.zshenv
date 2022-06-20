@@ -1,2 +1,2 @@
 #!/bin/sh
-export ZDOTDIR=$XDG_CONFIG_HOME/zsh
+[[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/x/xenv" ]] && source "${XDG_CONFIG_HOME:-$HOME/.config}/x/xenv"
