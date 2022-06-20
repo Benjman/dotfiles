@@ -1,14 +1,8 @@
 #!/bin/env /bin/bash
 
-# Random Photo Every Login
-feh --bg-fill --randomize ~/.local/share/backgrounds
+[[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/x/xenv" ]] && source "${XDG_CONFIG_HOME:-$HOME/.config}/x/xenv"
 
-# Monitor Config
-# xrandr --auto --output DVI-D-0 --mode 2560x1440 --left-of HDMI-0
-# xrandr --output DP-1 --mode 2560x1440 --rate 59.95
-# xrandr --auto --output HDMI-1 --mode 2560x1440 --left-of DP-1
-
-source /etc/profile.d/vte.sh
+xrdb $XDG_CONFIG_HOME/x/xresources & xrdbpid=$!
 
 # Don't Randomly Turn off
 xset s off
@@ -18,21 +12,13 @@ xset s noblank
 # Speedy keys
 xset r rate 210 40
 
-# Environment variables set everywhere
-export XDG_CACHE_HOME=$HOME/.cache
-export XDG_CONFIG_HOME=$HOME/.config
-export XDG_DATA_HOME=$HOME/.local/share
+# Random Photo Every Login
+feh --bg-fill --randomize ~/.local/share/backgrounds
 
-source $XDG_CONFIG_HOME/user-dirs.dirs
-xrdb $XDG_CONFIG_HOME/x/Xresources & xrdbpid=$! # Uncomment to use Xresources colors/settings on startup
-
-export BROWSER=/bin/brave
-export EDITOR=/bin/nvim
-export PAGER=/bin/less
-export VISUAL=$EDITOR
-
-export PATH="$HOME/.local/bin:$PATH"
-
+# Monitor Config
+# xrandr --auto --output DVI-D-0 --mode 2560x1440 --left-of HDMI-0
+# xrandr --output DP-1 --mode 2560x1440 --rate 59.95
+# xrandr --auto --output HDMI-1 --mode 2560x1440 --left-of DP-1
 # bind escape to caps
 [[ "${XDG_SESSION_TYPE@u}" == "X11" ]] && setxkbmap -option caps:escape
 [[ "${XDG_SESSION_TYPE@u}" == "WAYLAND" ]] && gsettings set org.gnome.desktop.input-sources xkb-options "['caps:escape']"
@@ -60,7 +46,9 @@ xset -q | grep "Caps Lock:\s*on" && xdotool key Caps_Lock
 [[ -x /usr/bin/flameshot ]] && flameshot &
 
 # Audio
-[[ -x /usr/bin/pipewire ]] && pipewire &
+[[ -x /usr/bin/pipewire ]] && pipewire & \
+  pipewire-pulse & \
+  pipewire-media-session &
 
 # Bluetooth systray icon
 # blueman-applet &

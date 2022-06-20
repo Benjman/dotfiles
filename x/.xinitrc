@@ -8,10 +8,10 @@
 # (login screen) and so they are needed there. To prevent doubling up commands,
 # I source them here with the line below.
 
-if [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xprofile" ]; then
-	. "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xprofile"
+if [ -f ~/.config/x/xprofile ]; then
+	source "${XDG_CONFIG_HOME:-$HOME/.config}/x/xprofile"
 else
-	. "$HOME/.xprofile"
+	source "$HOME/.xprofile"
 fi
 
 ssh-agent dwm
