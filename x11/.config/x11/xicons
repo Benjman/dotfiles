@@ -1,3 +1,4 @@
+#!/bin/env /bin/bash
 # This is the list for lf icons:
 export LF_ICONS="di=📁:\
 fi=📃:\
