@@ -1,11 +1,8 @@
 #!/bin/env /bin/bash
-
-[[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xenv" ]] && source "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xenv"
-
 source /etc/profile.d/vte.sh
 source $XDG_CONFIG_HOME/x11/xicons
 
-# Don't Randomly Turn off
+# Don't randomly turn off
 xset s off
 xset -dpms
 xset s noblank
@@ -13,7 +10,7 @@ xset s noblank
 # Speedy keys
 xset r rate 210 40
 
-# random photo every login
+# Random photo every login
 [[ -n $(ls -A $XDG_DATA_HOME/backgrounds 2> /dev/null) ]] && \
   feh --bg-fill --no-fehbg --randomize $XDG_DATA_HOME/backgrounds
 
@@ -25,13 +22,13 @@ killall xcape 2>/dev/null ; xcape -e 'Super_L=Escape'
 # Turn off caps lock if on since there is no longer a key for it.
 xset -q | grep "Caps Lock:\s*on" && xdotool key Caps_Lock
 
-# Status Bar (If this is crashing dwm, that means color emojis havne't been enabled: Install `yay -S libxft-bgra`!!!)
+# Status bar (If this is crashing dwm, that means color emojis havne't been enabled: Install `yay -S libxft-bgra`!!!)
 [[ -x /usr/local/bin/dwmblocks ]] && (pidof -s dwmblocks || dwmblocks &)
 
-# screen lock after `-time n` minutes
+# Screen lock after `-time n` minutes
 [[ -x /usr/bin/xautolock && -x /usr/local/bin/slock ]] && (pidof xautolock || xautolock -time 5 -locker slock &)
 
-# For QT Themes
+# For QT themes
 # export QT_QPA_PLATFORMTHEME=qt5ct
 
 # Compositor
@@ -48,13 +45,16 @@ xset -q | grep "Caps Lock:\s*on" && xdotool key Caps_Lock
   pidof  -s pipewire-pulse || pipewire-pulse & \
   pidof  -s pipewire-media-session || pipewire-media-session &)
 
+# Cloud storage
+[[ -x /usr/bin/nextcloud ]] && (pidof -s nextcloud || nextcloud --background & )
+
 # Bluetooth systray icon
 # blueman-applet &
 
-# Network Manager Applet
+# Network manager applet
 # nm-applet --indicator &
 
-# helps with puls audio
+# Helps with puls audio
 # pasystray &
 
 xrdb $XDG_CONFIG_HOME/x11/xresources & xrdbpid=$!
