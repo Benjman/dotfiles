@@ -104,14 +104,13 @@ static Key keys[] = {
     {MODKEY | ShiftMask, XK_comma,                 tagmon,         {.i = -1}                                           },
     {MODKEY,             XK_comma,                 focusmon,       {.i = -1}                                           },
     {MODKEY,             XK_d,                     spawn,          SHCMD("dmenu_run")                                  },
-    {MODKEY,             XK_d,                     spawn,          SHCMD("dmenu_run")                                  },
  // {MODKEY, XK_d, incnmaster, {.i = -1}},
     {MODKEY,             XK_f,                     setlayout,      {.v = &layouts[1]}                                  },
     {MODKEY,             XK_h,                     setmfact,       {.f = -0.05}                                        },
  // {MODKEY, XK_i, incnmaster, {.i = +1}},
     {MODKEY,             XK_j,                     focusstack,     {.i = +1}                                           },
     {MODKEY,             XK_k,                     focusstack,     {.i = -1}                                           },
- // {MODKEY,             XK_l,                     setmfact,       {.f = +0.05}                                        },
+    {MODKEY,             XK_l,                     setmfact,       {.f = +0.05}                                        },
     {MODKEY,             XK_m,                     setlayout,      {.v = &layouts[2]}                                  },
     {MODKEY | ShiftMask, XK_l,                     spawn,          SHCMD("slock")                                      },
     {MODKEY,             XK_p,                     spawn,          SHCMD("passmenu")                                   },
@@ -124,7 +123,6 @@ static Key keys[] = {
     {MODKEY,             XK_t,                     setlayout,      {.v = &layouts[0]}                                  },
     {MODKEY,             XK_t,                     spawn,          {.v = termcmd}                                      },
     {MODKEY,             XK_w,                     spawn,          SHCMD("$BROWSER")                                   },
-    {MODKEY,             XK_x,                     spawn,          SHCMD("ls | dmenu -p \"hello\"")                    },
 };
 
 /* button definitions */
