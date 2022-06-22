@@ -15,4 +15,4 @@ export PATH="$HOME/.local/bin:$PATH"
 
 source /etc/profile.d/vte.sh
 source $XDG_CONFIG_HOME/user-dirs.dirs
-source $XDG_CONFIG_HOME/x/xicons
+# source $XDG_CONFIG_HOME/x/xicons

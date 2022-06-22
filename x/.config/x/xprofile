@@ -2,7 +2,7 @@
 
 [[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/x/xenv" ]] && source "${XDG_CONFIG_HOME:-$HOME/.config}/x/xenv"
 
-xrdb $XDG_CONFIG_HOME/x/xresources & xrdbpid=$!
+xrdb $XDG_CONFIG_HOME/x/Xresources & xrdbpid=$!
 
 # Don't Randomly Turn off
 xset s off
@@ -20,8 +20,8 @@ feh --bg-fill --randomize ~/.local/share/backgrounds
 # xrandr --output DP-1 --mode 2560x1440 --rate 59.95
 # xrandr --auto --output HDMI-1 --mode 2560x1440 --left-of DP-1
 # bind escape to caps
-[[ "${XDG_SESSION_TYPE@u}" == "X11" ]] && setxkbmap -option caps:escape
-[[ "${XDG_SESSION_TYPE@u}" == "WAYLAND" ]] && gsettings set org.gnome.desktop.input-sources xkb-options "['caps:escape']"
+[[ "$XDG_SESSION_TYPE" == "x11" ]] && setxkbmap -option caps:escape
+[[ "$XDG_SESSION_TYPE" == "wayland" ]] && gsettings set org.gnome.desktop.input-sources xkb-options "['caps:escape']"
 # When caps lock is pressed only once, treat it as escape.
 killall xcape 2>/dev/null ; xcape -e 'Super_L=Escape'
 # Turn off caps lock if on since there is no longer a key for it.
@@ -37,18 +37,18 @@ xset -q | grep "Caps Lock:\s*on" && xdotool key Caps_Lock
 # export QT_QPA_PLATFORMTHEME=qt5ct
 
 # Compositor
-[[ -x /usr/bin/picom ]] && picom &
+[[ -x /usr/bin/picom ]] && 	pidof -s picom || picom &
 
 # Hide mouse when typing
-[[ -x /usr/bin/xbanish ]] && xbanish &
+[[ -x /usr/bin/xbanish ]] && pidof -s xbanish || xbanish &
 
 # Screenshots
-[[ -x /usr/bin/flameshot ]] && flameshot &
+[[ -x /usr/bin/flameshot ]] && pidof -s flameshot || flameshot &
 
 # Audio
-[[ -x /usr/bin/pipewire ]] && pipewire & \
-  pipewire-pulse & \
-  pipewire-media-session &
+[[ -x /usr/bin/pipewire ]] && pidof -s pipewire || pipewire & \
+  pidof -s pipewire-pulse || pipewire-pulse & \
+  pidof -s pipewire-media-session || pipewire-media-session &
 
 # Bluetooth systray icon
 # blueman-applet &
