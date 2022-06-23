@@ -65,10 +65,10 @@ static const Layout layouts[] = {
 #define STATUSBAR "dwmblocks"
 
 /* commands */
-static char dmenumon[2]             = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[]       = {"dmenu_run", "-m", dmenumon, NULL};
-static const char *termcmd[]        = {"/bin/alacritty", NULL};
-static const char *brightness[2][4] = {
+static char dmenumon[2]            = "0"; /* component of dmenucmd, manipulated in spawn() */
+static const char *dmenucmd[]      = {"dmenu_run", "-m", dmenumon, NULL};
+static const char *termcmd[]       = {"/bin/alacritty", NULL};
+static const char *backlight[2][4] = {
     {"xbacklight", "-inc", "5", NULL},
     {"xbacklight", "-dec", "5", NULL}
 };
@@ -89,40 +89,46 @@ static Key keys[] = {
     TAGKEYS(XK_8, 7),
     TAGKEYS(XK_9, 8),
 
- /* modifier            key                       function        argument */
-    {0,                  XF86XK_AudioLowerVolume,  spawn,          {.v = volume[1]}                                    },
-    {0,                  XF86XK_AudioMute,         spawn,          {.v = volume[2]}                                    },
-    {0,                  XF86XK_AudioRaiseVolume,  spawn,          {.v = volume[0]}                                    },
-    {0,                  XF86XK_MonBrightnessDown, spawn,          {.v = brightness[1]}                                },
-    {0,                  XF86XK_MonBrightnessUp,   spawn,          {.v = brightness[0]}                                },
-    {MODKEY | ShiftMask, XK_0,                     tag,            {.ui = ~0}                                          },
-    {MODKEY,             XK_0,                     view,           {.ui = ~0}                                          },
-    {MODKEY,             XK_Return,                zoom,           {0}                                                 },
-    {MODKEY,             XK_Tab,                   view,           {0}                                                 },
-    {MODKEY,             XK_b,                     togglebar,      {0}                                                 },
-    {MODKEY | ShiftMask, XK_c,                     killclient,     {0}                                                 },
-    {MODKEY | ShiftMask, XK_comma,                 tagmon,         {.i = -1}                                           },
-    {MODKEY,             XK_comma,                 focusmon,       {.i = -1}                                           },
-    {MODKEY,             XK_d,                     spawn,          SHCMD("dmenu_run")                                  },
- // {MODKEY, XK_d, incnmaster, {.i = -1}},
-    {MODKEY,             XK_f,                     setlayout,      {.v = &layouts[1]}                                  },
-    {MODKEY,             XK_h,                     setmfact,       {.f = -0.05}                                        },
- // {MODKEY, XK_i, incnmaster, {.i = +1}},
-    {MODKEY,             XK_j,                     focusstack,     {.i = +1}                                           },
-    {MODKEY,             XK_k,                     focusstack,     {.i = -1}                                           },
-    {MODKEY,             XK_l,                     setmfact,       {.f = +0.05}                                        },
-    {MODKEY,             XK_m,                     setlayout,      {.v = &layouts[2]}                                  },
-    {MODKEY | ShiftMask, XK_l,                     spawn,          SHCMD("slock")                                      },
-    {MODKEY,             XK_p,                     spawn,          SHCMD("passmenu")                                   },
-    {MODKEY | ShiftMask, XK_period,                tagmon,         {.i = +1}                                           },
-    {MODKEY,             XK_period,                focusmon,       {.i = +1}                                           },
-    {MODKEY | ShiftMask, XK_q,                     quit,           {0}                                                 },
-    {MODKEY,             XK_s,                     spawn,          SHCMD("/home/ben/.local/lib/scripts/scriptsmenu.sh")},
-    {MODKEY | ShiftMask, XK_space,                 togglefloating, {0}                                                 },
-    {MODKEY,             XK_space,                 setlayout,      {0}                                                 },
-    {MODKEY,             XK_t,                     setlayout,      {.v = &layouts[0]}                                  },
-    {MODKEY,             XK_t,                     spawn,          {.v = termcmd}                                      },
-    {MODKEY,             XK_w,                     spawn,          SHCMD("$BROWSER")                                   },
+ /***
+  * https://www.cl.cam.ac.uk/~mgk25/ucs/keysymdef.h
+  ***/
+
+  /* modifier            key                       function        argument */
+
+  // {MODKEY,             XK_d,                     incnmaster,     {.i = -1}           },
+  // {MODKEY,             XK_i,                     incnmaster,     {.i = +1}           },
+  // {MODKEY,             XK_t,                     setlayout,      {.v = &layouts[0]}  },
+
+    {0,                  XF86XK_AudioLowerVolume,  spawn,          {.v = volume[1]}   }, // Lower volume
+    {0,                  XF86XK_AudioRaiseVolume,  spawn,          {.v = volume[0]}   }, // Raise volume
+    {0,                  XF86XK_AudioMute,         spawn,          {.v = volume[2]}   }, // Mute volume
+    {0,                  XF86XK_MonBrightnessDown, spawn,          {.v = backlight[1]}}, // Decrease backlight of the display
+    {0,                  XF86XK_MonBrightnessUp,   spawn,          {.v = backlight[0]}}, // Increase backlight of the display
+
+    {MODKEY,             XK_Tab,                   view,           {0}                }, // Cycle between most recent tags
+    {MODKEY,             XK_b,                     togglebar,      {0}                }, // Toggle dwm toolbar
+    {MODKEY,             XK_q,                     killclient,     {0}                }, // Close application
+    {MODKEY | ShiftMask, XK_q,                     quit,           {0}                }, // Hard quit dwm
+    {MODKEY,             XK_d,                     spawn,          SHCMD("dmenu_run") }, // Application menu
+    {MODKEY,             XK_j,                     focusstack,     {.i = +1}          }, // Switch window focus within tag
+    {MODKEY,             XK_k,                     focusstack,     {.i = -1}          }, // Switch window focus within tag
+    {MODKEY,             XK_h,                     setmfact,       {.f = -0.05}       }, // Grow / Shrink windwos in tag
+    {MODKEY,             XK_l,                     setmfact,       {.f = +0.05}       }, // Grow / Shrink windwos in tag
+    {MODKEY,             XK_f,                     setlayout,      {.v = &layouts[1]} }, // Set layout to floating
+    {MODKEY,             XK_m,                     setlayout,      {.v = &layouts[2]} }, // Set layout to monocle
+    {MODKEY,             XK_space,                 setlayout,      {0}                }, // TODO lookup what this does
+    {MODKEY,             XK_p,                     spawn,          SHCMD("passmenu")  }, // Open pass in dmenu
+    {MODKEY,             XK_t,                     spawn,          {.v = termcmd}     }, // Open terminal
+    {MODKEY,             XK_w,                     spawn,          SHCMD("$BROWSER")  }, // Open browser
+    {MODKEY | ShiftMask, XK_l,                     spawn,          SHCMD("slock")     }, // Lock the display
+    {MODKEY | ShiftMask, XK_space,                 togglefloating, {0}                }, // Set floating window for application
+    {MODKEY,             XK_Return,                zoom,           {0}                }, // Focused window becomes the main application in tag
+    {MODKEY,             XK_0,                     view,           {.ui = ~0}         }, // Focused window available in all tags
+    {MODKEY,             XK_comma,                 focusmon,       {.i = -1}          }, // Move application within tag
+    {MODKEY,             XK_period,                focusmon,       {.i = +1}          }, // Move application within tag
+    {MODKEY | ShiftMask, XK_0,                     tag,            {.ui = ~0}         }, // Move application between tags
+    {MODKEY | ShiftMask, XK_Left,                  tagmon,         {.i = -1}          }, // Move application to different display
+    {MODKEY | ShiftMask, XK_Right,                 tagmon,         {.i = +1}          }, // Move application to different display
 };
 
 /* button definitions */
