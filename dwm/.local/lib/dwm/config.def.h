@@ -69,8 +69,8 @@ static char dmenumon[2]            = "0"; /* component of dmenucmd, manipulated 
 static const char *dmenucmd[]      = {"dmenu_run", "-m", dmenumon, NULL};
 static const char *termcmd[]       = {"/bin/alacritty", NULL};
 static const char *backlight[2][4] = {
-    {"xbacklight", "-inc", "5", NULL},
-    {"xbacklight", "-dec", "5", NULL}
+    {"backlight", "-inc", NULL},
+    {"backlight", "-dec", NULL}
 };
 static const char *volume[3][4] = {
     {"pulsemixer", "--change-volume", "+5", NULL},

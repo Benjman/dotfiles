@@ -1,0 +1,15 @@
+#!/bin/env /bin/bash
+
+[[ ! "$@" ]] && exit 1
+
+current=$(xbacklight -get)
+min=0.01
+step=10
+
+[[ "$1" == "-dec" && $(($(xbacklight -get) - $step)) -le 0 ]] && xbacklight $min && exit 0
+
+xbacklight $1 $step
+
+unset current
+unset min
+unset step
