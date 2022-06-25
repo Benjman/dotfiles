@@ -4,7 +4,7 @@ local snip = require 'luasnip'.snippet
 return {
   snip({ trig = "#!", namr = "Bash Shebang", }, {
     func(function ()
-      return "#!/bin/env /bin/bash"
+      return "#!/usr/bin/sh"
     end, {}),
   }),
 }
