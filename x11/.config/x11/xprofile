@@ -1,11 +1,17 @@
-#!/bin/env /bin/bash
+#!/usr/bin/sh
+
 source /etc/profile.d/vte.sh
 source $XDG_CONFIG_HOME/x11/xicons
+
+xrdb $XDG_CONFIG_HOME/x11/xresources & xrdbpid=$!
 
 # Don't randomly turn off
 xset s off
 xset -dpms
 xset s noblank
+
+# Disable beep
+xset b off
 
 # Speedy keys
 xset r rate 210 40
@@ -26,13 +32,7 @@ xset -q | grep "Caps Lock:\s*on" && xdotool key Caps_Lock
 [[ -x /usr/local/bin/dwmblocks ]] && (pidof -s dwmblocks || dwmblocks &)
 
 # Screen lock after `-time n` minutes
-[[ -x /usr/bin/xautolock && -x /usr/local/bin/slock ]] && (pidof xautolock || xautolock -time 5 -locker slock &)
-
-# For QT themes
-# export QT_QPA_PLATFORMTHEME=qt5ct
-
-# Compositor
-[[ -x /usr/bin/picom ]] && (pidof -s picom || picom &)
+[[ -x /usr/bin/xautolock && -x /usr/local/bin/slock ]] && (pidof xautolock || xautolock -time 15 -locker slock &)
 
 # Hide mouse when typing
 [[ -x /usr/bin/xbanish ]] && (pidof  -s xbanish || xbanish &)
@@ -40,13 +40,27 @@ xset -q | grep "Caps Lock:\s*on" && xdotool key Caps_Lock
 # Screenshots
 [[ -x /usr/bin/flameshot ]] && (pidof  -s flameshot || flameshot &)
 
-# Audio
-[[ -x /usr/bin/pipewire ]] && (pidof  -s pipewire || pipewire & \
-  pidof  -s pipewire-pulse || pipewire-pulse & \
-  pidof  -s pipewire-media-session || pipewire-media-session &)
-
 # Cloud storage
 [[ -x /usr/bin/nextcloud ]] && (pidof -s nextcloud || nextcloud --background & )
+
+# Additional configurations
+if [ -d $XDG_CONFIG_HOME/x11/conf ] ; then
+ for f in $XDG_CONFIG_HOME/x11/conf/?*.sh ; do
+  [ -x "$f" ] && . "$f"
+ done
+ unset f
+fi
+
+# Ensure that xrdb has finished running before moving on to start the WM/DE.
+[ -n "$xrdbpid" ] && wait "$xrdbpid"
+
+
+
+
+
+
+# For QT themes
+# export QT_QPA_PLATFORMTHEME=qt5ct
 
 # Bluetooth systray icon
 # blueman-applet &
@@ -56,7 +70,3 @@ xset -q | grep "Caps Lock:\s*on" && xdotool key Caps_Lock
 
 # Helps with puls audio
 # pasystray &
-
-xrdb $XDG_CONFIG_HOME/x11/xresources & xrdbpid=$!
-# Ensure that xrdb has finished running before moving on to start the WM/DE.
-[ -n "$xrdbpid" ] && wait "$xrdbpid"
