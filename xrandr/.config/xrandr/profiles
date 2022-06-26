@@ -1,2 +1,0 @@
-tonya: xrandr --output DP-3 --primary --mode 2560x1440 --left-of eDP-1 --output eDP-1 --off
-tonya_double: xrandr --output DP-3 --primary --mode 2560x1440 --left-of eDP-1 --output eDP-1 --mode 1920x1200
