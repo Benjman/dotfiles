@@ -3,12 +3,12 @@
 [[ ! "$@" ]] && exit 1
 
 current=$(xbacklight -get)
-min=0.01
+min=0.1
 step=10
 
-[[ "$1" == "-dec" && $(($(xbacklight -get) - $step)) -le 0 ]] && xbacklight $min && exit 0
-
-xbacklight $1 $step
+[[ "$1" == "-dec" && $(($current - $step)) -le 0 ]] && \
+  xbacklight $min || \
+  xbacklight $1 $step
 
 unset current
 unset min
