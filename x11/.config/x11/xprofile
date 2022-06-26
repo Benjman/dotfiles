@@ -21,8 +21,7 @@ xset r rate 210 40
   feh --bg-fill --no-fehbg --randomize $XDG_DATA_HOME/backgrounds
 
 # Map capslock to escape
-[[ "$XDG_SESSION_TYPE" == "x11" ]] && setxkbmap -option caps:escape
-[[ "$XDG_SESSION_TYPE" == "wayland" ]] && gsettings set org.gnome.desktop.input-sources xkb-options "['caps:escape']"
+setxkbmap -option caps:escape
 # When caps lock is pressed only once, treat it as escape.
 killall xcape 2>/dev/null ; xcape -e 'Super_L=Escape'
 # Turn off caps lock if on since there is no longer a key for it.
