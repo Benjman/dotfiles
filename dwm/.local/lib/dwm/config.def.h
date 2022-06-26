@@ -8,7 +8,7 @@ static const unsigned int snap     = 32; /* snap pixel */
 static const int showbar           = 1;  /* 0 means no bar */
 static const int topbar            = 1;  /* 0 means bottom bar */
 static const char *fonts[]         = {
-            "DejaVuSansMono Nerd Font:style=Regular:size=10",
+            "monospace:size=10",
             "NotoColorEmoji:pixelsize=10:antialias=true:autohint=true",
 };
 // static const char dmenufont[]      = "monospace:size=10";
@@ -117,6 +117,8 @@ static Key keys[] = {
     {MODKEY,             XK_f,                     setlayout,      {.v = &layouts[1]} }, // Set layout to floating
     {MODKEY,             XK_m,                     setlayout,      {.v = &layouts[2]} }, // Set layout to monocle
     {MODKEY,             XK_space,                 setlayout,      {0}                }, // TODO lookup what this does
+  // FIXME pemnu items sometimes don't show. This could be connected to running like `pass dice.com` also delaying. I think the
+  // latter     delays when we first try tu run passmenu, then do a pass command. Hint, when pass is delayed, check htop
     {MODKEY,             XK_p,                     spawn,          SHCMD("passmenu")  }, // Open pass in dmenu
     {MODKEY,             XK_t,                     spawn,          {.v = termcmd}     }, // Open terminal
     {MODKEY,             XK_w,                     spawn,          SHCMD("$BROWSER")  }, // Open browser
