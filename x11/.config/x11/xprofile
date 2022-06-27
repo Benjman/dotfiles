@@ -1,6 +1,6 @@
 #!/usr/bin/sh
 
-source /etc/profile.d/vte.sh
+# source /etc/profile.d/vte.sh
 source $XDG_CONFIG_HOME/x11/xicons
 
 xrdb $XDG_CONFIG_HOME/x11/xresources & xrdbpid=$!
@@ -26,21 +26,6 @@ setxkbmap -option caps:escape
 killall xcape 2>/dev/null ; xcape -e 'Super_L=Escape'
 # Turn off caps lock if on since there is no longer a key for it.
 xset -q | grep "Caps Lock:\s*on" && xdotool key Caps_Lock
-
-# Status bar (If this is crashing dwm, that means color emojis havne't been enabled: Install `yay -S libxft-bgra`!!!)
-[[ -x /usr/local/bin/dwmblocks ]] && (pidof -s dwmblocks || dwmblocks &)
-
-# Screen lock after `-time n` minutes
-[[ -x /usr/bin/xautolock && -x /usr/local/bin/slock ]] && (pidof xautolock || xautolock -time 15 -locker slock &)
-
-# Hide mouse when typing
-[[ -x /usr/bin/xbanish ]] && (pidof  -s xbanish || xbanish &)
-
-# Screenshots
-[[ -x /usr/bin/flameshot ]] && (pidof  -s flameshot || flameshot &)
-
-# Cloud storage
-[[ -x /usr/bin/nextcloud ]] && (pidof -s nextcloud || nextcloud --background & )
 
 # Additional configurations
 if [ -d $XDG_CONFIG_HOME/x11/conf ] ; then
