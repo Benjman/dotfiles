@@ -2,12 +2,12 @@
 
 info=$(upower -i /org/freedesktop/UPower/devices/battery_hidpp_battery_0 2> /dev/null)
 
-[[ ! "$info" || "$(echo $info | awk '/has history/{print $3}')" ]] && exit 0
+[[ ! "$info" || "$(echo $info | awk '/has history/{print $3}')" = "no" ]] && exit 0
 
 percentage=$(echo "$info" | awk '/percentage/{print $2}' | sed 's/%//')
 state=$(echo "$info" | awk '/state/{print $2}')
 
-[ "$percentage" -le "15" ] && [ "$state" = "discharging" ] && warn="❗"
+[ "$percentage" -le "15" ] && [ "$state" = "discharging" = "no" ] && warn="❗"
 
 # case "$(echo "$info" | awk '/state/{print $2}')" in
   # "discharging") status=
