@@ -1,3 +1,8 @@
+local status_ok, _ = pcall(require, "telescope")
+if not status_ok then
+  return {setup = function() end}
+end
+
 local M = {}
 local cmd = function(c) return "<cmd>" .. c .. "<cr>" end
 local opts = { noremap = true, silent = true }
