@@ -11,5 +11,3 @@ export TERMINAL=/bin/alacritty
 export ZDOTDIR=$XDG_CONFIG_HOME/zsh
 
 export PATH="$HOME/.local/bin:$PATH"
-
-source $XDG_CONFIG_HOME/user-dirs.dirs

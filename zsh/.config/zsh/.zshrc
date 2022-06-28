@@ -1,7 +1,8 @@
-#!/bin/shsetopt appendhistory
+#!/bin/sh
 
 # some useful options (man zshoptions)
 setopt autocd extendedglob nomatch menucomplete
+setopt appendhistory
 setopt interactive_comments
 setopt NO_BG_NICE # don't nice background tasks
 setopt NO_HUP

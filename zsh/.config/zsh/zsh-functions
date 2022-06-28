@@ -5,31 +5,32 @@ function zsh_add_file() {
 }
 
 function zsh_plugin_source() {
-  [ -f "$ZPLUGINS/$1" ] && source "$ZPLUGINS/$1"
+  [ -f "$ZDOTDIR/plugins/$1" ] && source "$ZDOTDIR/plugins/$1"
 }
 
 function zsh_add_plugin() {
   PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
-  if [ -d "$ZPLUGINS/$PLUGIN_NAME" ]; then 
+  if [ -d "$ZDOTDIR/plugins/$PLUGIN_NAME" ]; then 
     # For plugins
     zsh_plugin_source "$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh" || \
       zsh_plugin_source "$PLUGIN_NAME/$PLUGIN_NAME.zsh"
   else
-    git clone "https://github.com/$1.git" "$ZPLUGINS/$PLUGIN_NAME"
+    git clone "https://github.com/$1.git" "$ZDOTDIR/plugins/$PLUGIN_NAME"
   fi
 }
 
 function zsh_add_completion() {
+  echo "Hit" >> /tmp/zsh-functions
   PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
-  if [ -d "$ZPLUGINS/$PLUGIN_NAME" ]; then 
+  if [ -d "$ZDOTDIR/plugins/$PLUGIN_NAME" ]; then 
     # For completions
-    completion_file_path=$(ls $ZPLUGINS/$PLUGIN_NAME/_*)
+    completion_file_path=$(ls $ZDOTDIR/plugins/$PLUGIN_NAME/_*)
     fpath+="$(dirname "${completion_file_path}")"
     zsh_plugin_source "$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh"
   else
-    git clone "https://github.com/$1.git" "$ZPLUGINS/$PLUGIN_NAME"
-    fpath+=$(ls $ZPLUGINS/$PLUGIN_NAME/_*)
-    [ -f $ZPLUGINS/.zcompdump ] && $ZPLUGINS/.zcompdump
+    git clone "https://github.com/$1.git" "$ZDOTDIR/plugins/$PLUGIN_NAME"
+    fpath+=$(ls $ZDOTDIR/plugins/$PLUGIN_NAME/_*)
+    [ -f $ZDOTDIR/plugins/.zcompdump ] && $ZDOTDIR/plugins/.zcompdump
   fi
   completion_file="$(basename "${completion_file_path}")"
   if [ "$2" = true ] && compinit "${completion_file:1}"
