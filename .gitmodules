@@ -1,6 +1,6 @@
-[submodule "password-store/.local/share/password-store"]
-	path = password-store/.config/password-store
-	url = git@github.com:Benjman/password-store
 [submodule "yay/.local/lib/yay"]
 	path = yay/.local/lib/yay
 	url = https://aur.archlinux.org/yay-git.git
+[submodule "password-store/.config/password-store"]
+	path = password-store/.config/password-store
+	url = git@github.com:Benjman/password-store
