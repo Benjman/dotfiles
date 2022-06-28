@@ -1,8 +1,5 @@
 #!/usr/bin/sh
 
-# source /etc/profile.d/vte.sh
-source $XDG_CONFIG_HOME/x11/xicons
-
 xrdb $XDG_CONFIG_HOME/x11/xresources & xrdbpid=$!
 
 # Don't randomly turn off
@@ -18,7 +15,7 @@ xset r rate 210 40
 
 # Random photo every login
 [[ -n $(ls -A $XDG_DATA_HOME/backgrounds 2> /dev/null) ]] && \
-  feh --bg-fill --no-fehbg --randomize $XDG_DATA_HOME/backgrounds
+  feh --bg-fill --no-fehbg --randomize $XDG_DATA_HOME/backgrounds &
 
 # Map capslock to escape
 setxkbmap -option caps:escape
@@ -27,10 +24,12 @@ killall xcape 2>/dev/null ; xcape -e 'Super_L=Escape'
 # Turn off caps lock if on since there is no longer a key for it.
 xset -q | grep "Caps Lock:\s*on" && xdotool key Caps_Lock
 
+source $XDG_CONFIG_HOME/x11/xicons &
+
 # Additional configurations
 if [ -d $XDG_CONFIG_HOME/x11/conf ] ; then
  for f in $XDG_CONFIG_HOME/x11/conf/?*.sh ; do
-  [ -x "$f" ] && . "$f"
+  [ -x "$f" ] && . "$f" &
  done
  unset f
 fi
