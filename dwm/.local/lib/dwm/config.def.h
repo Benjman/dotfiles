@@ -95,9 +95,10 @@ static Key keys[] = {
 
   /* modifier            key                       function        argument */
 
-  // {MODKEY,             XK_d,                     incnmaster,     {.i = -1}           },
-  // {MODKEY,             XK_i,                     incnmaster,     {.i = +1}           },
-  // {MODKEY,             XK_t,                     setlayout,      {.v = &layouts[0]}  },
+  // {MODKEY,             XK_d,                     incnmaster,     {.i = -1}
+  // }, {MODKEY,             XK_i,                     incnmaster,     {.i =
+  // +1}           }, {MODKEY,             XK_t, setlayout,      {.v =
+  // &layouts[0]}  },
 
     {0,                  XF86XK_AudioLowerVolume,  spawn,          {.v = volume[1]}   }, // Lower volume
     {0,                  XF86XK_AudioRaiseVolume,  spawn,          {.v = volume[0]}   }, // Raise volume
@@ -117,8 +118,10 @@ static Key keys[] = {
     {MODKEY,             XK_f,                     setlayout,      {.v = &layouts[1]} }, // Set layout to floating
     {MODKEY,             XK_m,                     setlayout,      {.v = &layouts[2]} }, // Set layout to monocle
     {MODKEY,             XK_space,                 setlayout,      {0}                }, // TODO lookup what this does
-  // FIXME pemnu items sometimes don't show. This could be connected to running like `pass dice.com` also delaying. I think the
-  // latter     delays when we first try tu run passmenu, then do a pass command. Hint, when pass is delayed, check htop
+  // FIXME pemnu items sometimes don't show. This could be connected to
+  // running like `pass dice.com` also delaying. I think the latter     delays
+  // when we first try tu run passmenu, then do a pass command. Hint, when
+  // pass is delayed, check htop
     {MODKEY,             XK_p,                     spawn,          SHCMD("passmenu")  }, // Open pass in dmenu
     {MODKEY,             XK_t,                     spawn,          {.v = termcmd}     }, // Open terminal
     {MODKEY,             XK_w,                     spawn,          SHCMD("$BROWSER")  }, // Open browser
@@ -144,9 +147,9 @@ static Button buttons[] = {
     {ClkLtSymbol,   0,      Button1, setlayout,      {0}               },
     {ClkLtSymbol,   0,      Button3, setlayout,      {.v = &layouts[2]}},
     {ClkStatusText, 0,      Button2, spawn,          {.v = termcmd}    },
-    {ClkStatusText, 0,      Button1, sigstatusbar,   {.i = 1}          },
-    {ClkStatusText, 0,      Button2, sigstatusbar,   {.i = 2}          },
-    {ClkStatusText, 0,      Button3, sigstatusbar,   {.i = 3}          },
+ // {ClkStatusText, 0,      Button1, sigstatusbar,   {.i = 1}          },
+  // {ClkStatusText, 0,      Button2, sigstatusbar,   {.i = 2}          },
+  // {ClkStatusText, 0,      Button3, sigstatusbar,   {.i = 3}          },
     {ClkTagBar,     0,      Button1, view,           {0}               },
     {ClkTagBar,     0,      Button3, toggleview,     {0}               },
     {ClkTagBar,     MODKEY, Button1, tag,            {0}               },
