@@ -16,8 +16,10 @@ htop
 jdk-openjdk
 julia
 lazygit
+libxft-bgra
 luarocks
 man-db
+mpv
 neofetch
 neovim
 newsboat
@@ -45,9 +47,11 @@ sudo
 urlview-xdg-git
 wget
 xautolock
+xbanish
 xclip
+xdg-user-dirs
 xorg
 xorg-server
 xorg-xinit
-zsh
 yt-dlp
+zsh
