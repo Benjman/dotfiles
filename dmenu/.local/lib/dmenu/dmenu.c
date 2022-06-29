@@ -400,11 +400,11 @@ keypress(XKeyEvent *ev)
 	if (ev->state & ControlMask) {
 		switch(ksym) {
 		case XK_a: ksym = XK_Home;      break;
-		case XK_b: ksym = XK_Left;      break;
+		case XK_h: ksym = XK_Left;      break;
 		case XK_c: ksym = XK_Escape;    break;
 		// case XK_d: ksym = XK_Delete;    break;
 		case XK_e: ksym = XK_End;       break;
-		case XK_f: ksym = XK_Right;     break;
+		case XK_l: ksym = XK_Right;     break;
 		case XK_g: ksym = XK_Escape;    break;
 		// case XK_h: ksym = XK_BackSpace; break;
 		case XK_i: ksym = XK_Tab;       break;
@@ -414,11 +414,11 @@ keypress(XKeyEvent *ev)
 		case XK_j: ksym = XK_Down;      break;
 		case XK_k: ksym = XK_Up;        break;
 
-		case XK_l: /* delete right */
+		case XK_L: /* delete right */
 			text[cursor] = '\0';
 			match();
 			break;
-		case XK_h: /* delete left */
+		case XK_H: /* delete left */
 			insert(NULL, 0 - cursor);
 			break;
 		case XK_w: /* delete word */
