@@ -1,13 +1,16 @@
 alacritty
 base-devel
+base-devel
 bluez
 bluez-utils
+cmake
 composer
 discord
 efibootmgr
 fd
 feh
 flameshot
+fzf
 git
 git-delta
 go
