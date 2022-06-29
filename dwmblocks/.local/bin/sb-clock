@@ -26,4 +26,4 @@ esac
 # 	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
 # esac
 
-date "+%a %b %d $icon %R"
+date "+%a %b %d $icon %r"

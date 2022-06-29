@@ -5,7 +5,7 @@ static const Block blocks[] = {
     {"", "sb-battery", 5, 3},
     {"", "sb-internet", 5, 4},
     {"", "sb-mouse", 60, 5},
-    {"", "sb-clock", 20, 1},
+    {"", "sb-clock", 1, 1},
 };
 
-static char *delim = " ";
+static char *delim = " | ";
