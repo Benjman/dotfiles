@@ -16,5 +16,5 @@ alias src="cd ~/.local/src"
 alias trash="trash --trash-dir=/tmp/trash"
 alias vim=$EDITOR
 alias vimc="pushd . 1> /dev/null && cd $XDG_CONFIG_HOME/nvim && $EDITOR && popd 1> /dev/null"
-alias wget="wget --hsts-file=/dev/null"
+alias wget="wget --no-hsts"
 alias zrc="pushd . 1> /dev/null && cd $ZDOTDIR && $EDITOR && popd 1> /dev/null"
