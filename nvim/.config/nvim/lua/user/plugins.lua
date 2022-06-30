@@ -43,7 +43,7 @@ return packer.startup(function(use)
   use "wbthomason/packer.nvim" -- packer can manage itself
   use "nvim-lua/plenary.nvim"
   use "windwp/nvim-autopairs"
-  use "kevinhwang91/rnvimr" -- better file explorer
+  use "kyazdani42/nvim-tree.lua"
   use "moll/vim-bbye"
   use "akinsho/bufferline.nvim"
   use "lewis6991/impatient.nvim"
@@ -53,7 +53,7 @@ return packer.startup(function(use)
   use "karb94/neoscroll.nvim"
   -- use "ThePrimeagen/harpoon" -- TODO implement
   use "tpope/vim-repeat"
-  use "rcarriga/nvim-notify"
+  -- use "rcarriga/nvim-notify"
   use "rmagatti/auto-session"
 
   -- commenting
