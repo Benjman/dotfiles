@@ -4,3 +4,6 @@
 [submodule "pass/.config/pass"]
 	path = pass/.config/pass
 	url = git@github.com:Benjman/password-store
+[submodule "dwm/.local/lib/dwm"]
+	path = dwm/.local/lib/dwm
+	url = git@github.com:Benjman/dwm
