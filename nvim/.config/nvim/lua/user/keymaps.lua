@@ -21,16 +21,6 @@ M.setup = function()
   set("n", "<C-n>", cmd "cnext", opts) -- jump to next item in quickfix list
   set("n", "<C-p>", cmd "cprev", opts) -- jump to previous item in quickfix list
   set("n", "<C-q>", cmd "cclose", opts) -- close quickfix list
-  set("n", "<leader>F", pickers.live_grep, opts)
-  set("n", "<leader>e", cmd "RnvimrToggle", opts)
-  set("n", "<leader>f", pickers.find_files, opts)
-  set("n", "<leader>lI", cmd "LspInstallInfo", opts)
-  set("n", "<leader>la", vim.lsp.buf.code_action, opts)
-  set("n", "<leader>lg", vim.lsp.buf.rename, opts)
-  set("n", "<leader>li", cmd "LspInfo", opts)
-  set("n", "<leader>lr", vim.lsp.buf.rename, opts)
-  set("n", "<leader>tb", pickers.buffers, opts)
-  set("n", "<leader>th", pickers.help_tags, opts)
   set("n", "gs", cmd "split      | lua vim.lsp.buf.definition()", opts) -- goes to definition in a split
   set("n", "gv", cmd "vert split | lua vim.lsp.buf.definition()", opts) -- goes to definition in a vertical split
   set("v", "<", "<gv", opts) -- indentation without leaving visual mode
@@ -38,6 +28,19 @@ M.setup = function()
   set("v", "p", '"_dP', opts) -- replace selected with yanked
   set("x", "J", cmd "move '>+1gv-gv", opts) -- move selected down
   set("x", "K", cmd "move '<-2gv-gv", opts) -- move selected up
+
+  set("n", "<leader>F", pickers.live_grep, opts)
+  set("n", "<leader>e", cmd "RnvimrToggle", opts)
+  set("n", "<leader>f", pickers.find_files, opts)
+  set("n", "<leader>h", cmd "set invhlsearch", opts)
+  set("n", "<leader>lI", cmd "LspInstallInfo", opts)
+  set("n", "<leader>la", vim.lsp.buf.code_action, opts)
+  set("n", "<leader>lg", vim.lsp.buf.rename, opts)
+  set("n", "<leader>li", cmd "LspInfo", opts)
+  set("n", "<leader>lr", vim.lsp.buf.rename, opts)
+  set("n", "<leader>tb", pickers.buffers, opts)
+  set("n", "<leader>th", pickers.help_tags, opts)
+
 end
 
 M.lsp = function(bufnr)
