@@ -10,7 +10,7 @@ static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]         = {
-            "monospace:size=10",
+            "DejaVuSansMono Nerd Font:size=10",
             "NotoColorEmoji:pixelsize=10:antialias=true:autohint=true",
 };
 static const char col_gray1[]       = "#222222";
@@ -92,46 +92,37 @@ static Key keys[] = {
   ***/
 
   /* modifier            key                       function        argument */
+    {0,                  XF86XK_AudioLowerVolume,  spawn,          {.v = volume[1]}                       }, // Lower volume
+    {0,                  XF86XK_AudioRaiseVolume,  spawn,          {.v = volume[0]}                       }, // Raise volume
+    {0,                  XF86XK_AudioMute,         spawn,          {.v = volume[2]}                       }, // Mute volume
+    {0,                  XF86XK_MonBrightnessDown, spawn,          {.v = backlight[1]}                    }, // Decrease backlight of the display
+    {0,                  XF86XK_MonBrightnessUp,   spawn,          {.v = backlight[0]}                    }, // Increase backlight of the display
 
-  // {MODKEY,             XK_d,                     incnmaster,     {.i = -1}
-  // }, {MODKEY,             XK_i,                     incnmaster,     {.i =
-  // +1}           }, {MODKEY,             XK_t, setlayout,      {.v =
-  // &layouts[0]}  },
-
-    {0,                  XF86XK_AudioLowerVolume,  spawn,          {.v = volume[1]}   }, // Lower volume
-    {0,                  XF86XK_AudioRaiseVolume,  spawn,          {.v = volume[0]}   }, // Raise volume
-    {0,                  XF86XK_AudioMute,         spawn,          {.v = volume[2]}   }, // Mute volume
-    {0,                  XF86XK_MonBrightnessDown, spawn,          {.v = backlight[1]}}, // Decrease backlight of the display
-    {0,                  XF86XK_MonBrightnessUp,   spawn,          {.v = backlight[0]}}, // Increase backlight of the display
-
-    {MODKEY,             XK_Tab,                   view,           {0}                }, // Cycle between most recent tags
-    {MODKEY,             XK_b,                     togglebar,      {0}                }, // Toggle dwm toolbar
-    {MODKEY,             XK_q,                     killclient,     {0}                }, // Close application
-    {MODKEY | ShiftMask, XK_q,                     quit,           {0}                }, // Hard quit dwm
-    {MODKEY,             XK_d,                     spawn,          SHCMD("dmenu_run") }, // Application menu
-    {MODKEY,             XK_j,                     focusstack,     {.i = +1}          }, // Switch window focus within tag
-    {MODKEY,             XK_k,                     focusstack,     {.i = -1}          }, // Switch window focus within tag
-    {MODKEY,             XK_h,                     setmfact,       {.f = -0.05}       }, // Grow / Shrink windwos in tag
-    {MODKEY,             XK_l,                     setmfact,       {.f = +0.05}       }, // Grow / Shrink windwos in tag
-    {MODKEY,             XK_f,                     setlayout,      {.v = &layouts[1]} }, // Set layout to floating
-    {MODKEY,             XK_m,                     setlayout,      {.v = &layouts[2]} }, // Set layout to monocle
-    {MODKEY,             XK_space,                 setlayout,      {0}                }, // TODO lookup what this does
-  // FIXME pemnu items sometimes don't show. This could be connected to
-  // running like `pass dice.com` also delaying. I think the latter     delays
-  // when we first try tu run passmenu, then do a pass command. Hint, when
-  // pass is delayed, check htop
-    {MODKEY,             XK_p,                     spawn,          SHCMD("passmenu")  }, // Open pass in dmenu
-    {MODKEY,             XK_t,                     spawn,          {.v = termcmd}     }, // Open terminal
-    {MODKEY,             XK_w,                     spawn,          SHCMD("$BROWSER")  }, // Open browser
-    {MODKEY | ShiftMask, XK_l,                     spawn,          SHCMD("slock")     }, // Lock the display
-    {MODKEY | ShiftMask, XK_space,                 togglefloating, {0}                }, // Set floating window for application
-    {MODKEY,             XK_Return,                zoom,           {0}                }, // Focused window becomes the main application in tag
-    {MODKEY,             XK_0,                     view,           {.ui = ~0}         }, // Focused window available in all tags
-    {MODKEY,             XK_comma,                 focusmon,       {.i = -1}          }, // Move application within tag
-    {MODKEY,             XK_period,                focusmon,       {.i = +1}          }, // Move application within tag
-    {MODKEY | ShiftMask, XK_0,                     tag,            {.ui = ~0}         }, // Move application between tags
-    {MODKEY | ShiftMask, XK_Left,                  tagmon,         {.i = -1}          }, // Move application to different display
-    {MODKEY | ShiftMask, XK_Right,                 tagmon,         {.i = +1}          }, // Move application to different display
+    {MODKEY,             XK_Tab,                   view,           {0}                                    }, // Cycle between most recent tags
+    {MODKEY,             XK_b,                     togglebar,      {0}                                    }, // Toggle dwm toolbar
+    {MODKEY,             XK_q,                     killclient,     {0}                                    }, // Close application
+    {MODKEY | ShiftMask, XK_q,                     quit,           {0}                                    }, // Hard quit dwm
+    {MODKEY,             XK_d,                     spawn,          SHCMD("dmenu_run -p \"Applications\"") }, // Application menu
+    {MODKEY,             XK_j,                     focusstack,     {.i = +1}                              }, // Switch window focus within tag
+    {MODKEY,             XK_k,                     focusstack,     {.i = -1}                              }, // Switch window focus within tag
+    {MODKEY,             XK_h,                     setmfact,       {.f = -0.05}                           }, // Grow / Shrink windwos in tag
+    {MODKEY,             XK_l,                     setmfact,       {.f = +0.05}                           }, // Grow / Shrink windwos in tag
+    {MODKEY,             XK_f,                     setlayout,      {.v = &layouts[1]}                     }, // Set layout to floating
+    {MODKEY,             XK_m,                     setlayout,      {.v = &layouts[2]}                     }, // Set layout to monocle
+    {MODKEY,             XK_space,                 setlayout,      {0}                                    }, // TODO lookup what this does
+    {MODKEY,             XK_p,                     spawn,          SHCMD("passmenu")                      }, // Open pass in dmenu
+    {MODKEY | ShiftMask, XK_1,                     spawn,          SHCMD("dmenuunicode")                  }, // Open pass in dmenu
+    {MODKEY,             XK_t,                     spawn,          {.v = termcmd}                         }, // Open terminal
+    {MODKEY,             XK_w,                     spawn,          SHCMD("$BROWSER")                      }, // Open browser
+    {MODKEY | ShiftMask, XK_l,                     spawn,          SHCMD("slock")                         }, // Lock the display
+    {MODKEY | ShiftMask, XK_space,                 togglefloating, {0}                                    }, // Set floating window for application
+    {MODKEY,             XK_Return,                zoom,           {0}                                    }, // Focused window becomes the main application in tag
+    {MODKEY,             XK_0,                     view,           {.ui = ~0}                             }, // Focused window available in all tags
+    {MODKEY,             XK_comma,                 focusmon,       {.i = -1}                              }, // Move application within tag
+    {MODKEY,             XK_period,                focusmon,       {.i = +1}                              }, // Move application within tag
+    {MODKEY | ShiftMask, XK_0,                     tag,            {.ui = ~0}                             }, // Move application between tags
+    {MODKEY | ShiftMask, XK_Left,                  tagmon,         {.i = -1}                              }, // Move application to different display
+    {MODKEY | ShiftMask, XK_Right,                 tagmon,         {.i = +1}                              }, // Move application to different display
 };
 
 /* button definitions */
