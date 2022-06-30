@@ -1,6 +1,8 @@
+#!/usr/bin/sh
+
 #!/bin/sh
 
-info=$(upower -i /org/freedesktop/UPower/devices/battery_hidpp_battery_0 2> /dev/null)
+info=$(upower -i /org/freedesktop/UPower/devices/headset_dev_14_3F_A6_09_82_23 2> /dev/null)
 
 [[ ! "$info" || "$(echo $info | awk '/has history/{print $3}')" = "no" ]] && exit 0
 
@@ -13,4 +15,4 @@ state=$(echo "$info" | awk '/state/{print $2}')
   # "discharging") status=
 # esac
 
-printf "%s%s%d%%\\n" "🖱️ " "$warn" "$percentage" ; unset warn
+printf "%s%s %d%%\\n" "🎧" "$warn" "$percentage" ; unset warn
