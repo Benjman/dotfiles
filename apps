@@ -13,10 +13,12 @@ flameshot
 fzf
 git
 git-delta
+gnome-keyring
 go
 grub
 htop
 jdk-openjdk
+jellyfin-media-player
 julia
 lazygit
 libxft-bgra
@@ -47,6 +49,8 @@ rust
 spotify-launcher
 stow
 sudo
+ttf-dejavu
+upower
 urlview-xdg-git
 wget
 xautolock
