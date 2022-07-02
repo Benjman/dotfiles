@@ -7,3 +7,4 @@
 [submodule "dwm/.local/lib/dwm"]
 	path = dwm/.local/lib/dwm
 	url = git@github.com:Benjman/dwm
+  branch = main
