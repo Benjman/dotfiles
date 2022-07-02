@@ -1,4 +1,4 @@
 #!/usr/bin/sh
-
-echo "Hit volume" >> /tmp/sb-volume
-printf "%s %s%%\\n" "🔊" $(pulsemixer --get-volume 2> /tmp/sb-volume | awk '{print $1}')
+vol=$(pulsemixer --get-volume 2> /dev/null | awk '{print $1}')
+[ ! "$vol" ] && exit 0
+printf "%s %s%%\\n" "🔊" "$vol"
