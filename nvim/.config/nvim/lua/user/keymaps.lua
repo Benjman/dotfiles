@@ -30,7 +30,7 @@ M.setup = function()
   set("x", "K", cmd "move '<-2gv-gv", opts) -- move selected up
 
   set("n", "<leader>F", pickers.live_grep, opts)
-  set("n", "<leader>e", cmd "RnvimrToggle", opts)
+  set("n", "<leader>e", cmd "NvimTreeFocus", opts)
   set("n", "<leader>f", pickers.find_files, opts)
   set("n", "<leader>h", cmd "set invhlsearch", opts)
   set("n", "<leader>lI", cmd "LspInstallInfo", opts)
