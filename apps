@@ -33,13 +33,14 @@ neovim
 newsboat
 nextcloud-client
 nodejs
+notification-daemon
 noto-fonts-emoji
 npm
 obsidian
 openssh
 pass
 php
-picom
+picom-jonaburg-git
 pipewire
 pipewire-media-session
 pipewire-pulse
@@ -65,4 +66,3 @@ xorg-server
 xorg-xinit
 yt-dlp
 zsh
-notification-daemon
