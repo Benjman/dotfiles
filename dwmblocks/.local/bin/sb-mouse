@@ -1,10 +1,9 @@
 #!/bin/sh
 
 info=$(upower -i /org/freedesktop/UPower/devices/battery_hidpp_battery_0 2> /dev/null)
-
-[[ ! "$info" || $(echo "$info" | awk '/has history/{print $3'}) = "no" ]] && exit 0
-
 percentage=$(echo "$info" | awk '/percentage/{print $2}' | sed "s/%//")
-[ "$percentage" -le "15" ] && [ $(echo "$info" | awk '/state/{print $2}') = "discharging" ] && warn="❗"
 
-printf "%s%s%d%%\\n" "🖱️ " "$warn" "$percentage" ; unset warn
+[ $(echo "$info" | awk '/has history/{print $3}') = "no" ] && exit 0 # Mouse not found in upower
+[ "$percentage" -gt "20" ] && [ $(echo "$info" | awk '/state/{print $2}') != "discharging" ] && exit 0 # let's not show mouse until it has low battery
+
+printf "%s%d%%\\n" "⚠️🖱️""$percentage
