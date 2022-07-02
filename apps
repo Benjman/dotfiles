@@ -24,7 +24,10 @@ lazygit
 libxft-bgra
 luarocks
 man-db
+mpc
+mpd
 mpv
+ncmpcpp
 neofetch
 neovim
 newsboat
@@ -62,3 +65,4 @@ xorg-server
 xorg-xinit
 yt-dlp
 zsh
+notification-daemon
