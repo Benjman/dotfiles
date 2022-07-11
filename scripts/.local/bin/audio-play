@@ -1,0 +1,8 @@
+#!/usr/bin/sh
+
+for i in $(mpc --format ""); do
+  a=$i
+  break
+done
+
+[[ "$a" = "[playing]" ]] && mpc pause || mpc play
