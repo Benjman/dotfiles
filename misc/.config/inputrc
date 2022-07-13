@@ -1,0 +1,2 @@
+# this enables vi mode in gdb
+set editing-mode vi
