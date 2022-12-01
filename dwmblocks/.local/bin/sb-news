@@ -1,0 +1,5 @@
+#!/usr/bin/sh
+exit 0
+count=$(newsboat --url-file ~/.config/newsboat/urls --cache-file ~/.local/share/newsboat/cache.db -x 'reload' -x 'print-unread' | awk '{print $1}')
+[ "$count" = "0" ] && exit
+printf "🗞️ %s\n" "$count"
