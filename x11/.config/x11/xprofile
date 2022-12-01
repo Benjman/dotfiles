@@ -1,5 +1,7 @@
 #!/usr/bin/sh
 
+xrandr --output DP-0 --mode 2560x1440 --rate 60 --left-of DP-4 --output DP-4 --mode 2560x1440 --rate 144
+
 xrdb $XDG_CONFIG_HOME/x11/xresources & xrdbpid=$!
 
 xset s off # Don't randomly turn off
