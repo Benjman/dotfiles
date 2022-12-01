@@ -1,0 +1,2 @@
+#!/bin/env /bin/bash
+curl "wttr.in/Salt+Lake+City?format=1" 2> /dev/null | sed 's/\s\+//'
