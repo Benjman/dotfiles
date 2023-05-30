@@ -1,0 +1,2 @@
+#!/usr/bin/sh
+/usr/bin/mpv --no-resume-playback "https://playerservices.streamtheworld.com/api/livestream-redirect/KUOWFM_HIGH_MP3.mp3"
