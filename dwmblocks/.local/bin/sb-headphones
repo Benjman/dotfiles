@@ -1,9 +1,0 @@
-#!/usr/bin/sh
-
-info=$(upower -i /org/freedesktop/UPower/devices/headset_dev_14_3F_A6_09_82_23 2> /dev/null)
-percentage=$(echo "$info" | awk '/percentage/{print $2}' | sed "s/%//")
-
-[ $(echo "$info" | awk '/has history/{print $3}') = "no" ] && exit 0 # Mouse not found in upower
-[ "$percentage" -lt "20" ] && [ $(echo "$info" | awk '/state/{print $2}') != "discharging" ] && exit 0 # let's not show mouse until it has low battery
-
-printf "%s %d%%\\n" "🎧" "$percentage"
