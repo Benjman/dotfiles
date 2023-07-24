@@ -1,5 +1,5 @@
 os:
-  edit: 'floaterm'
+  edit: 'nvim'
   editPreset: 'nvim'
 
 gui:
