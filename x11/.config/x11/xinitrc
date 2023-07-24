@@ -5,4 +5,4 @@ else
 	source "$HOME/.xprofile"
 fi
 
-exec dwm
+exec "$HOME"/.local/bin/dwm
