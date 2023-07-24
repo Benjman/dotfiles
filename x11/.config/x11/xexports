@@ -11,7 +11,6 @@ export GOPATH=$XDG_DATA_HOME/go
 export GTK_THEME=Awaita:dark
 export HISTCONTROL=ignoreboth
 export HISTFILE=$XDG_CACHE_HOME/bash/history
-export JAVA_HOME=/usr/lib/jvm/default
 export LESSHISTFILE="-"
 export MANPAGER='nvim +Man!'
 export MANWIDTH=999
