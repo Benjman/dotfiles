@@ -19,10 +19,10 @@ source $XDG_CONFIG_HOME/x11/xexports
 
 # Additional configurations
 if [ -d $XDG_CONFIG_HOME/x11/conf ] ; then
-  for f in $XDG_CONFIG_HOME/x11/conf/?*.sh ; do
-    [ -r "$f" ] && . $f
-  done
-  unset f
+ for f in $XDG_CONFIG_HOME/x11/conf/?*.sh ; do
+  [ -x "$f" ] && "$f"
+ done
+ unset f
 fi
 
 # Ensure that xrdb has finished running before moving on to start the WM/DE.
