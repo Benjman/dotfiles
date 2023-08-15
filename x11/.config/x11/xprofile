@@ -10,6 +10,8 @@ xset s noblank
 xset b off # Disable beep
 xset r rate 195 40 # Speedy keys
 
+setxkbmap -option caps:swapescape
+
 dbus-update-activation-environment --systemd DISPLAY
 
 source $XDG_CONFIG_HOME/x11/xicons &
