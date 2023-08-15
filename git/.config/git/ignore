@@ -12,6 +12,7 @@ cmake-build-*
 compile_commands.json
 tags
 .ccls-cache
+imgui.ini
 
 ###
 ### c++
