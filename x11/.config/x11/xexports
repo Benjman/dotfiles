@@ -3,6 +3,7 @@
 export BROWSER="/usr/bin/firefox"
 export EDITOR="/usr/bin/nvim"
 export TERMINAL="/usr/bin/alacritty"
+export VISUAL="$EDITOR"
 
 export CUDA_CACHE_PATH=$XDG_CACHE_HOME/nv
 export GDBHISTFILE=$XDG_DATA_HOME/gdb/history
