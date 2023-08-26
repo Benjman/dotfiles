@@ -1,6 +1,7 @@
 #!/usr/bin/sh
 
 xrandr --output DP-0 --mode 2560x1440 --rate 60 --left-of DP-4 --output DP-4 --mode 2560x1440 --rate 120
+[[ -d ~/.local/share/nextcloud/backgrounds ]] && feh -Z --bg-fill --no-fehbg --randomize ~/.local/share/nextcloud/backgrounds &
 
 xrdb $XDG_CONFIG_HOME/x11/xresources & xrdbpid=$!
 
