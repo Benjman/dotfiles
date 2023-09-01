@@ -1,6 +1,6 @@
 os:
-  edit: 'nvim'
-  editPreset: 'nvim'
+  edit: 'nvim --cmd "let g:block_session=1" {{filename}}'
+  editPreset: 'nvim --cmd "let g:block_session=1" {{filename}}'
 
 gui:
   theme:
