@@ -1,4 +1,4 @@
-#!/usr/bin/sh
+#!/usr/bin/env zsh
 LLVM_PATH="$HOME/.local/src/llvm-project"
 if [ -d "$LLVM_PATH" ]
 then
