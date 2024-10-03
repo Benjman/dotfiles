@@ -1,8 +1,0 @@
-#!/usr/bin/sh
-
-# Additional configurations
-if [ -d $XDG_CONFIG_HOME/x11/conf ] ; then
- for f in $XDG_CONFIG_HOME/x11/conf/?*.sh ; do
-  [ -x "$f" ] && . "$f"
- done
-fi
