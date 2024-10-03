@@ -1,8 +1,0 @@
-#!/usr/bin/sh
-if [ -f  "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xprofile" ]; then
-	source "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xprofile"
-else
-	source "$HOME/.xprofile"
-fi
-
-exec "$HOME"/.local/bin/dwm
