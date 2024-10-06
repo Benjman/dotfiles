@@ -1,6 +1,7 @@
 #!/usr/bin/zsh
 
 export CARGO_HOME="$XDG_CACHE_HOME/cargo"
+export CUDA_CACHE_PATH="$XDG_CACHE_HOME/nv"
 export EDITOR=nvim
 export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
 export GOMODCACHE="$XDG_CACHE_HOME/go/mod"
