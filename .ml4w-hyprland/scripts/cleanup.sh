@@ -25,3 +25,12 @@ if [ -d ~/.npm ]; then
     sleep 2
   fi
 fi
+
+if [ -d ~/.nv ]; then
+  if [ -n "$CUDA_CACHE_PATH" ]; then
+    mv ~/.nv $CUDA_CACHE_PATH
+  else
+    echo "ERROR: Failed to move ~/.nv: \$CUDA_CACHE_PATH not set"
+    sleep 2
+  fi
+fi
