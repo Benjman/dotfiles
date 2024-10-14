@@ -1,0 +1,2 @@
+set print elements unlimited
+set debuginfod enabled off

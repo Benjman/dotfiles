@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo ":: set root passwod (needed to ssh"
+echo ":: set root passwod (needed to ssh)"
 passwd
 
 echo ":: enabling pacman: color"

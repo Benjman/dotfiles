@@ -1,0 +1,5 @@
+#!/usr/bin/zsh
+
+alias lg="lazygit"
+alias make="make -j${nproc}"
+alias newsboat="newsboat -u ~/.local/share/Nextcloud/newsboat/urls -c ~/.local/share/Nextcloud/newsboat/cache.db -C ~/.local/share/Nextcloud/newsboat/config"
