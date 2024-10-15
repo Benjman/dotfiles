@@ -1,11 +1,16 @@
 packagesAur=(
 
+  "abseil-cpp"
+  "assimp"
   "cataclysm-dda-tiles"
   "discord"
   "dwarffortress"
   "fd"
   "git-delta"
+  "glfw"
+  "glm"
   "gnome-keyring"
+  "imgui"
   "jack2"
   "jellyfin-media-player"
   "lazygit"
@@ -23,6 +28,7 @@ packagesAur=(
   "python-cpplint"
   "ripgrep"
   "spotify-launcher"
+  "stb"
   "texinfo"
   "wireplumber"
 
