@@ -13,6 +13,7 @@ packagesAur=(
   "man"
   "man-db"
   "man-pages"
+  "nextcloud-client"
   "pass"
   "pipewire"
   "pipewire-alsa"
