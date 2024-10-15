@@ -15,6 +15,7 @@ packagesAur=(
   "man"
   "man-db"
   "man-pages"
+  "newsboat"
   "nextcloud-client"
   "pass"
   "pipewire"
