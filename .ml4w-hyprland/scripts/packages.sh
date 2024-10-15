@@ -9,6 +9,7 @@ packagesAur=(
   "jack2"
   "jellyfin-media-player"
   "lazygit"
+  "lazygit"
   "luarocks"
   "man"
   "man-db"
