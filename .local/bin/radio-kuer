@@ -1,0 +1,2 @@
+#!/usr/bin/sh
+/usr/bin/mpv --no-resume-playback "https://kuer.streamguys1.com/high_icy"
