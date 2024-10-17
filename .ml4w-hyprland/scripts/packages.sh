@@ -31,6 +31,8 @@ packagesAur=(
   "spotify-launcher"
   "stb"
   "texinfo"
+  "transmission-cli"
   "wireplumber"
+  "zenity"
 
 )
