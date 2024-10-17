@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Transmission
+Comment=Open Magnet Links with Transmission
+Exec=transmission-remote --add %U
+Icon=transmission
+Terminal=false
+Categories=Network;P2P;
+MimeType=x-scheme-handler/magnet;
