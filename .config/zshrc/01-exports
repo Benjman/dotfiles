@@ -1,0 +1,14 @@
+#!/usr/bin/env /usr/bin/zsh
+
+# internal exports:
+export EDITOR=nvim
+export REPOS="$XDG_DATA_HOME/repos"
+export UINTA_DIR="$REPOS/uinta"
+
+# external exports:
+export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
+export MAKEFLAGS="-j$(nproc)"
+export PASSWORD_STORE_DIR="$REPOS/password-store"
+export PATH="$HOME/.local/bin:$PATH"
+
+[[ -d $REPOS/dotfiles ]] && export PATH="$REPOS/dotfiles/.local/bin:$PATH"
