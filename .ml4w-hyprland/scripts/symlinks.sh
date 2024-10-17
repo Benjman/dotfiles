@@ -17,6 +17,8 @@ symlinks=(
   ".config/zshrc/05-user-aliases"
   ".config/zshrc/99-user-caps_esc_swap"
   ".config/zshrc/99-user-zsh-cache-override"
+  ".local/bin/magnet-handler.sh"
+  ".local/share/applications/magnet-handler.desktop"
 
 )
 
