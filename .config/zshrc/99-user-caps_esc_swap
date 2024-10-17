@@ -1,0 +1,12 @@
+#!/usr/bin/env /usr/bin/zsh
+
+if [ "$TERM" = "linux" ]; then
+  kmap_path=$XDG_RUNTIME_DIR/caps_esc_map.kmap
+  if [ ! -f $kmap_path ]; then
+    echo "keycode 1 = Caps_Lock" >$kmap_path
+    echo "keycode 58 = Escape" >>$kmap_path
+  fi
+  sudo -n loadkeys $kmap_path
+  echo
+  echo ":: caps lock and escape keys have been swapped"
+fi

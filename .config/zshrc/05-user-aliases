@@ -1,0 +1,8 @@
+#!/usr/bin/env /usr/bin/zsh
+
+alias grep="grep --color=auto"
+alias lg="lazygit"
+alias ls="ls --color=auto"
+alias make="make -j${nproc}"
+alias newsboat="newsboat -u ~/.local/share/Nextcloud/newsboat/urls -c ~/.local/share/Nextcloud/newsboat/cache.db -C ~/.local/share/Nextcloud/newsboat/config"
+alias wget="wget --hsts-file=$XDG_CACHE_HOME/wget-hsts"
