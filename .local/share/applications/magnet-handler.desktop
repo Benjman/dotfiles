@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Name=Transmission
+Exec=magnet-handler.sh %U
+Icon=transmission
+Terminal=false
+Type=Application
+Categories=Network;P2P;
+MimeType=x-scheme-handler/magnet;
