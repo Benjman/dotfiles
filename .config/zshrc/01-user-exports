@@ -7,5 +7,7 @@ export UINTA_DIR="$REPOS/uinta"
 
 # external exports:
 export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
+export GOMODCACHE="$XDG_CACHE_HOME/go/mod"
+export GOPATH="$XDG_DATA_HOME/go"
 export PASSWORD_STORE_DIR="$REPOS/password-store"
 export PATH="$HOME/.local/bin:$PATH"
