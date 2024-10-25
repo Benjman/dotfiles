@@ -5,6 +5,7 @@ packagesAur=(
   "btop"
   "cataclysm-dda-tiles"
   "discord"
+  "docker"
   "dwarffortress"
   "fd"
   "git-delta"
