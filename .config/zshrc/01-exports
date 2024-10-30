@@ -7,6 +7,7 @@ export UINTA_DIR="$REPOS/uinta"
 
 # external exports:
 export CARGO_HOME="$XDG_CACHE_HOME/cargo"
+export CMAKE_PREFIX_PATH="$HOME/.local"
 export CUDA_CACHE_PATH="$XDG_CACHE_HOME/nv"
 export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
@@ -16,5 +17,6 @@ export MAKEFLAGS="-j$(nproc)"
 export NPM_CONFIG_USERCONFIG="$XDG_CACHE_HOME/npm/npmrc"
 export PASSWORD_STORE_DIR="$REPOS/password-store"
 export PATH="$HOME/.local/bin:$PATH"
+export WINEPREFIX="$XDG_DATA_HOME"/wineprefixes/default
 
 [[ -d $REPOS/dotfiles ]] && export PATH="$REPOS/dotfiles/.local/bin:$PATH"
